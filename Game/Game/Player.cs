@@ -23,9 +23,7 @@ namespace Game
 			sprite.Quad.S 	= textureInfo.TextureSizef;
 			sprite.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width*0.5f,Director.Instance.GL.Context.GetViewport().Height*0.5f);
 			sprite.Pivot 	= new Vector2(125.5f,155.0f);
-			
-			//sprite.
-			//angle = 0.0f;
+			sprite.Angle = 0.0f;
 			
 			//Add to the current scene.
 			scene.AddChild(sprite);
@@ -41,9 +39,9 @@ namespace Game
 			sprite.Position = new Vector2(sprite.Position.X + x, sprite.Position.Y + y);
 		}
 		
-		public void Rotate()
+		public void Rotate(float angle)
 		{
-			sprite.Rotation = new Vector2(sprite.Rotation.X + 0.5f, sprite.Rotation.Y + 0.5f);
+			sprite.Angle = angle;
 		}
 	}
 }

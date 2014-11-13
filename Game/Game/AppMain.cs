@@ -98,20 +98,32 @@ namespace Game
 			
 			
 			
+			//Combined input
+		//	if(Input2.GamePad0.Square.Down && Input2.GamePad0.Triangle.Down)
+		//		player.Rotate(FMath.PI/4);
+		//	
+		//	if(Input2.GamePad0.Square.Down && Input2.GamePad0.Cross.Down)
+		//		player.Rotate((FMath.PI*2)/3);
+		//	
+		//	if(Input2.GamePad0.Circle.Down && Input2.GamePad0.Cross.Down)
+		//		player.Rotate((FMath.PI*2)/1.5f);
+		//	
+		//	if(Input2.GamePad0.Circle.Down && Input2.GamePad0.Triangle.Down)
+		//		player.Rotate((FMath.PI*2) - (FMath.PI/4));
+			
+			
+			
 			if(Input2.GamePad0.Square.Down)
-				player.Rotate();
+				player.Rotate(FMath.PI/2);
 			
 			if(Input2.GamePad0.Circle.Down)
-				player.Move(10.0f, 0.0f);
+				player.Rotate(FMath.PI * 1.5f);
 			
 			if(Input2.GamePad0.Triangle.Down)
-				player.Move(0.0f, 10.0f);
+				player.Rotate(0.0f);
 			
 			if(Input2.GamePad0.Cross.Down)
-				player.Move(0.0f, -10.0f);
-						
-
-			
+				player.Rotate(FMath.PI);			
 		}
 	}
 }
