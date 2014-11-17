@@ -19,22 +19,28 @@ namespace Game
 		//Character
 		private static int healthPoints;
 		private static float movementSpeed;
+		private static float velocity;
 		private static bool meleeMode;
 		private static int weaponChoice;
 		private static int secondWeaponAmmo;
 		private static int thirdWeaponAmmo;
 		private static int fourthWeaponAmmo;
 
-		public Player (Scene scene)
+		public Player (Scene scene, int healthPoints, int movementSpeed)
 		{
 			textureInfo  = new TextureInfo("/Application/textures/Plaiyah.png");
 			
+			//Sprite
 			sprite	 		= new SpriteUV();
 			sprite 			= new SpriteUV(textureInfo);	
 			sprite.Quad.S 	= textureInfo.TextureSizef;
 			sprite.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width*0.5f,Director.Instance.GL.Context.GetViewport().Height*0.5f);
 			sprite.Pivot 	= new Vector2(sprite.Quad.S.X/2, sprite.Quad.S.Y/2);
 			sprite.Angle = 0.0f;
+			
+			//Load character values
+			this.healthPoints = healthPoints;
+			this.movementSpeed = movementSpeed;
 			
 			//Add to the current scene.
 			scene.AddChild(sprite);
@@ -45,6 +51,14 @@ namespace Game
 			textureInfo.Dispose();
 		}
 		
+		public void Update()
+		{
+			//Update sprite
+			//Set weapon
+			//Health
+			//Momentum
+		}
+		
 		public void Move(float x, float y)
 		{
 			sprite.Position = new Vector2(sprite.Position.X + x, sprite.Position.Y + y);
@@ -53,6 +67,23 @@ namespace Game
 		public void Rotate(float angle)
 		{
 			sprite.Angle = angle;
+		}				
+				
+		public void ChangeWeapon(int weaponNo)
+		{ 
+			weaponChoice = weaponNo; 
+		}
+		
+		public void Attack()
+		{
+			if(meleeMode)
+			{
+				//melee attack
+			}
+			else
+			{
+				//fire weapon
+			}
 		}
 	}
 }
