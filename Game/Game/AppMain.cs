@@ -82,8 +82,8 @@ namespace Game
 		public static void Update ()
 		{
 			// Query gamepad for current state
-			GamePadData data = GamePad.GetData (0);
-			
+			var gamePadData = GamePad.GetData(0);
+
 			if(Input2.GamePad0.Left.Down)
 				player.Move(-10.0f, 0.0f);
 			
@@ -97,6 +97,17 @@ namespace Game
 				player.Move(0.0f, -10.0f);
 			
 			
+			if((gamePadData.Buttons & GamePadButtons.Left) != 0)
+				player.Move(-10.0f, 0.0f);
+			
+			if((gamePadData.Buttons & GamePadButtons.Right) != 0)
+				player.Move(10.0f, 0.0f);
+			
+			if((gamePadData.Buttons & GamePadButtons.Up) != 0)
+				player.Move(0.0f, 10.0f);
+			
+			if((gamePadData.Buttons & GamePadButtons.Down) != 0)
+				player.Move(0.0f, -10.0f);
 			
 			//Combined input
 		//	if(Input2.GamePad0.Square.Down && Input2.GamePad0.Triangle.Down)
@@ -110,7 +121,6 @@ namespace Game
 		//	
 		//	if(Input2.GamePad0.Circle.Down && Input2.GamePad0.Triangle.Down)
 		//		player.Rotate((FMath.PI*2) - (FMath.PI/4));
-			
 			
 			
 			if(Input2.GamePad0.Square.Down)
