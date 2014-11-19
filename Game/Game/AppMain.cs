@@ -75,7 +75,7 @@ namespace Game
 			Director.Instance.RunWithScene(gameScene, true);
 			
 			//Create the player
-			player = new Player(gameScene);
+			player = new Player(gameScene, 100, 5);
 			
 		}
 
@@ -133,7 +133,11 @@ namespace Game
 				player.Rotate(0.0f);
 			
 			if(Input2.GamePad0.Cross.Down)
-				player.Rotate(FMath.PI);			
+				player.Rotate(FMath.PI);	
+			
+			
+			if(Input2.GamePad0.Start.Down)
+				player.Attack();
 		}
 	}
 }

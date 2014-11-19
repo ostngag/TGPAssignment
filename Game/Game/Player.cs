@@ -13,37 +13,41 @@ namespace Game
 		//Private Variables
 		
 		//Sprite
-		private static SpriteUV 	sprite;
 		private static TextureInfo	textureInfo;
+		private static SpriteUV 	charSprite;
+		private static SpriteUV		bulletSprite;
 		
 		//Character
 		private static int healthPoints;
 		private static float movementSpeed;
 		private static float velocity;
 		private static bool meleeMode;
-		private static int weaponChoice;
+		private static Weapon weapon;
 		private static int secondWeaponAmmo;
 		private static int thirdWeaponAmmo;
 		private static int fourthWeaponAmmo;
 
-		public Player (Scene scene, int healthPoints, int movementSpeed)
+		public Player (Scene scene, int hp, int ms)
 		{
 			textureInfo  = new TextureInfo("/Application/textures/Plaiyah.png");
 			
 			//Sprite
-			sprite	 		= new SpriteUV();
-			sprite 			= new SpriteUV(textureInfo);	
-			sprite.Quad.S 	= textureInfo.TextureSizef;
-			sprite.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width*0.5f,Director.Instance.GL.Context.GetViewport().Height*0.5f);
-			sprite.Pivot 	= new Vector2(sprite.Quad.S.X/2, sprite.Quad.S.Y/2);
-			sprite.Angle = 0.0f;
+			charSprite	 		= new SpriteUV();
+			charSprite 			= new SpriteUV(textureInfo);	
+			charSprite.Quad.S 	= textureInfo.TextureSizef;
+			charSprite.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width*0.5f,Director.Instance.GL.Context.GetViewport().Height*0.5f);
+			charSprite.Pivot 	= new Vector2(charSprite.Quad.S.X/2, charSprite.Quad.S.Y/2);
+			charSprite.Angle = 0.0f;
 			
 			//Load character values
-			this.healthPoints = healthPoints;
-			this.movementSpeed = movementSpeed;
+			healthPoints = hp;
+			movementSpeed = ms;
+			meleeMode = false;
+			
+			weapon = new Weapon();
 			
 			//Add to the current scene.
-			scene.AddChild(sprite);
+			scene.AddChild(charSprite);
 		}
 		
 		public void Dispose()
@@ -54,24 +58,27 @@ namespace Game
 		public void Update()
 		{
 			//Update sprite
+			
 			//Set weapon
+			
+			
 			//Health
 			//Momentum
 		}
 		
 		public void Move(float x, float y)
 		{
-			sprite.Position = new Vector2(sprite.Position.X + x, sprite.Position.Y + y);
+			charSprite.Position = new Vector2(charSprite.Position.X + x, charSprite.Position.Y + y);
 		}
 		
 		public void Rotate(float angle)
 		{
-			sprite.Angle = angle;
+			charSprite.Angle = angle;
 		}				
 				
 		public void ChangeWeapon(int weaponNo)
 		{ 
-			weaponChoice = weaponNo; 
+			weapon.chooseWeapon(weaponNo); 
 		}
 		
 		public void Attack()
@@ -83,6 +90,7 @@ namespace Game
 			else
 			{
 				//fire weapon
+				weapon.fire(charSprite.Position.X, charSprite.Position.Y, charSprite.Angle, charSprite.Quad.S.Y);
 			}
 		}
 	}

@@ -52,6 +52,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Sce\Sce.Psm.CSharp.targets" />
   <ItemGroup>
     <Content Include="textures\Plaiyah.png" />
+    <Content Include="textures\Bullet.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="textures\" />

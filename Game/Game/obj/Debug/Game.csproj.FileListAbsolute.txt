@@ -156,3 +156,5 @@ H:\Git Repos\TGPAssignment\Game\Game\obj\Debug\shaders\shaders\Simple.cgx
 H:\Git Repos\TGPAssignment\Game\Game\obj\Debug\convertedpdb\app.exe.mdb
 H:\Git Repos\TGPAssignment\Game\Game\obj\Debug\app.exe
 H:\Git Repos\TGPAssignment\Game\Game\obj\Debug\app.pdb
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\Bullet.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\Bullet.png

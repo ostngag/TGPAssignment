@@ -1,13 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Game\Player.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Game\Weapon.cs">
     <Files>
-      <File FileName="Game\AppMain.cs" Line="117" Column="31" />
-      <File FileName="Game\Player.cs" Line="16" Column="25" />
+      <File FileName="Game\AppMain.cs" Line="140" Column="21" />
+      <File FileName="Game\Player.cs" Line="48" Column="4" />
+      <File FileName="Game\app.xml" Line="1" Column="1" />
+      <File FileName="Game\Weapon.cs" Line="51" Column="69" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\Player.cs" line="84" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
