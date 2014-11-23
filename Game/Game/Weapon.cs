@@ -12,10 +12,11 @@ namespace Game
 	{
 		// Private variables
 		
+		
 		// Sprites
 		private static TextureInfo	textureInfo;
-		private static SpriteUV 	currentBullet;
-		private static SpriteUV 	pistolBullet;
+		public SpriteUV 	currentBullet;
+		private  SpriteUV 	pistolBullet;
 				
 		// Other
 		private static int weaponChosen;		
@@ -24,7 +25,7 @@ namespace Game
 		
 		private static float bulletVelocityX, bulletVelocityY;
 			
-		public Weapon()
+		public Weapon(GameScene currentScene)
 		{
 			// Load all weapon bullets
 			
@@ -41,22 +42,26 @@ namespace Game
 			
 			weaponChosen = 1;
 			currentBullet = pistolBullet;
+			
+			currentScene.AddChild(currentBullet);
 		}
 		
-		public void update()
+		public void Update()
 		{
 			if(fired)
 			{
-				if(currentBullet.Position.X < 2000 && currentBullet.Position.X >= 0 && currentBullet.Position.Y < 2000 && currentBullet.Position.Y >= 0)
+				if(currentBullet.Position.X < 900 && currentBullet.Position.X >= 0 && currentBullet.Position.Y < 600 && currentBullet.Position.Y >= 0)
 					currentBullet.Position = new Vector2(currentBullet.Position.X + bulletVelocityX, currentBullet.Position.Y + bulletVelocityY);
 				else
 				{
 					fired = false;
 				}
 			}
+			
+			//Console.WriteLine("X: " + currentBullet.Position.X + " Y: " + currentBullet.Position.Y);
 		}
 		
-		public void chooseWeapon(int weaponNo)
+		public void ChooseWeapon(int weaponNo)
 		{
 			if(weaponNo == 2)
 			{
@@ -77,7 +82,7 @@ namespace Game
 			}
 		}
 		
-		public void fire(float x, float y, float angle, float radius)
+		public void Fire(float x, float y, float angle, float radius)
 		{			
 			if(!fired)
 			{
@@ -85,8 +90,8 @@ namespace Game
 				float gunPosX = x + (radius * FMath.Cos(angle));
 				float gunPosY = y + (radius * FMath.Sin(angle));
 				currentBullet.Position = new Vector2(gunPosX, gunPosY);			
-				bulletVelocityX = FMath.Cos(angle);
-				bulletVelocityY = FMath.Sin(angle);
+				bulletVelocityX = FMath.Cos(angle / 10.0f);
+				bulletVelocityY = FMath.Sin(angle / 10.0f);
 			}
 		}
 	}

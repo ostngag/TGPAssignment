@@ -41,6 +41,7 @@
     <Compile Include="AppMain.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Weapon.cs" />
+    <Compile Include="GameScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="shaders\Simple.fcg" />
@@ -51,10 +52,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Sce\Sce.Psm.CSharp.targets" />
   <ItemGroup>
-    <Content Include="textures\Plaiyah.png" />
-    <Content Include="textures\Bullet.png" />
+    <Folder Include="textures\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="textures\" />
+    <Content Include="textures\Bullet.png" />
+    <Content Include="textures\Plaiyah.png" />
+    <Content Include="textures\Greyscreen.png" />
   </ItemGroup>
 </Project>
