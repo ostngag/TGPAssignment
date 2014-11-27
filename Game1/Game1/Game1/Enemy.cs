@@ -7,7 +7,7 @@ using Sce.PlayStation.HighLevel.GameEngine2D;
 using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 using Sce.PlayStation.Core.Input;
 
-namespace Game
+namespace Game1
 {
 	public class Enemy
 	{
@@ -26,7 +26,7 @@ namespace Game
 		//Player to chase
 		Player player;
 		
-		public Enemy (GameScene currentScene, Player player)
+		public Enemy (Level1State currentState, Player player)
 		{
 			textureInfo  = new TextureInfo("/Application/textures/Bullet.png");
 			
@@ -44,7 +44,7 @@ namespace Game
 			
 			this.player = player;
 			
-			currentScene.AddChild(sprite);	
+			currentState.AddChild(sprite);	
 		}
 		
 		public void Dispose()

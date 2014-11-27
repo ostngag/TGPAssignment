@@ -1,16 +1,21 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Game1\States\MenuState.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Game1\GameState.cs">
     <Files>
-      <File FileName="Game1\AppMain.cs" Line="18" Column="7" />
-      <File FileName="Game1\GameState.cs" Line="17" Column="4" />
-      <File FileName="Game1\State.cs" Line="22" Column="5" />
-      <File FileName="Game1\States\MenuState.cs" Line="17" Column="4" />
-      <File FileName="Game1\States\Level1State.cs" Line="21" Column="3" />
-      <File FileName="Game1\States\Level2State.cs" Line="27" Column="4" />
-      <File FileName="Game1\States\Level3State.cs" Line="22" Column="4" />
-      <File FileName="Game1\States\LoseState.cs" Line="10" Column="4" />
-      <File FileName="Game1\States\WinState.cs" Line="15" Column="3" />
+      <File FileName="Game1\AppMain.cs" Line="66" Column="13" />
+      <File FileName="Game1\GameState.cs" Line="11" Column="16" />
+      <File FileName="Game1\State.cs" Line="10" Column="6" />
+      <File FileName="Game1\States\MenuState.cs" Line="10" Column="6" />
+      <File FileName="Game1\States\Level1State.cs" Line="31" Column="4" />
+      <File FileName="Game1\States\Level2State.cs" Line="57" Column="3" />
+      <File FileName="Game1\States\Level3State.cs" Line="30" Column="6" />
+      <File FileName="Game1\States\LoseState.cs" Line="19" Column="3" />
+      <File FileName="Game1\States\WinState.cs" Line="18" Column="1" />
+      <File FileName="Game1\Player.cs" Line="44" Column="3" />
+      <File FileName="Game1\Enemy.cs" Line="17" Column="11" />
+      <File FileName="Game1\PistolBulletSprite.cs" Line="10" Column="16" />
+      <File FileName="Game1\Weapon.cs" Line="42" Column="23" />
+      <File FileName="Game1\PistolBullet.cs" Line="14" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
