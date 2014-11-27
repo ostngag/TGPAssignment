@@ -1,5 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+<<<<<<< HEAD
+  <MonoDevelop.Ide.Workbench ActiveDocument="Game\Enemy.cs">
+    <Files>
+      <File FileName="Game\AppMain.cs" Line="37" Column="29" />
+      <File FileName="Game\Player.cs" Line="28" Column="12" />
+      <File FileName="Game\app.xml" Line="11" Column="1" />
+      <File FileName="Game\GameScene.cs" Line="64" Column="4" />
+      <File FileName="Game\Weapon.cs" Line="18" Column="27" />
+      <File FileName="Game\PistolBullet.cs" Line="52" Column="3" />
+      <File FileName="Game\PistolBulletSprite.cs" Line="12" Column="33" />
+      <File FileName="Game\Enemy.cs" Line="32" Column="72" />
+=======
   <MonoDevelop.Ide.Workbench ActiveDocument="Game\Player.cs">
     <Files>
       <File FileName="Game\AppMain.cs" Line="37" Column="29" />
@@ -10,12 +22,11 @@
       <File FileName="Game\PistolBullet.cs" Line="18" Column="41" />
       <File FileName="Game\PistolBulletSprite.cs" Line="12" Column="33" />
       <File FileName="Game\Enemy.cs" Line="53" Column="4" />
+>>>>>>> origin/Rui
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\Player.cs" line="84" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

@@ -73,12 +73,21 @@ namespace Game
 			
 			if(attacking)
 				player.Attack();
-	
-			// To detect if the player is moving the right analog
-			previousAnalogRightX = gamePadData.AnalogRightX;
-			previousAnalogRightY = gamePadData.AnalogRightY;	
-		}			
+			
+			int i = 0;
+			
+			foreach(PistolBullet entries in player.weapon.pistolBullet)
+			{
+				if(enemy.Collision(player.weapon.pistolBullet[i].sprite, enemy.sprite))
+				{
+					enemy.Killed();
+					player.weapon.pistolBullet[i].HitEntity();
+				}
 				
+				i++;
+			}
+			
+		}		
 	}
 }
 

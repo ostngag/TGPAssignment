@@ -13,7 +13,11 @@ namespace Game
 	public class PistolBullet
 	{
 		private bool fired = false;
+<<<<<<< HEAD
+		public SpriteUV sprite;
+=======
 		private SpriteUV sprite;
+>>>>>>> origin/Rui
 		private float bulletVelocityX, bulletVelocityY;
 		public static int bulletInterval = 21;
 		private static int speed = 10;
@@ -41,14 +45,30 @@ namespace Game
 				}				
 		}
 		
+<<<<<<< HEAD
+		public void Fired(float posX, float posY, float velocityX, float velocityY, float angle)
+		{ 
+			sprite.Position = new Vector2(posX, posY);
+			sprite.Angle = angle;
+=======
 		public void Fired(float posX, float posY, float velocityX, float velocityY)
 		{ 
 			sprite.Position = new Vector2(posX, posY);
+>>>>>>> origin/Rui
 			bulletVelocityX = velocityX;
 			bulletVelocityY = velocityY;
 			fired = true; 
 		}
 		
+<<<<<<< HEAD
+		public void HitEntity()
+		{
+			sprite.Position = new Vector2(-10000, 10000);
+			fired = false;
+		}
+		
+=======
+>>>>>>> origin/Rui
 		public static int GetSpeed() { return speed; }
 	}
 }

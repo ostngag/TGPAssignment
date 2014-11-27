@@ -16,19 +16,31 @@ namespace Game
 		
 		//Sprite
 		private static TextureInfo	textureInfo;
+<<<<<<< HEAD
+		public SpriteUV 	sprite;
+=======
 		private static SpriteUV 	sprite;
+>>>>>>> origin/Rui
 		private static float 			angle;
 		
 		//Character
 		private static int healthPoints;
 		private static float movementSpeed;
+<<<<<<< HEAD
+		private static bool alive = true;
+=======
+>>>>>>> origin/Rui
 		
 		//Player to chase
 		Player player;
 		
 		public Enemy (GameScene currentScene, Player player)
 		{
+<<<<<<< HEAD
+			textureInfo  = new TextureInfo("/Application/textures/Badface.png");
+=======
 			textureInfo  = new TextureInfo("/Application/textures/Bullet.png");
+>>>>>>> origin/Rui
 			
 			//Sprite
 			sprite	 		= new SpriteUV();
@@ -54,11 +66,22 @@ namespace Game
 		
 		public void Update(float dt)
 		{		
+<<<<<<< HEAD
+			if(alive)
+			{
+				float playerX = player.GetSprite().Position.X;
+				float playerY = player.GetSprite().Position.Y;			
+				float directionX = playerX - sprite.Position.X;
+				float directionY = playerY - sprite.Position.Y;
+				Move(directionX/100, directionY/100);	
+			}	
+=======
 			float playerX = player.GetSprite().Position.X;
 			float playerY = player.GetSprite().Position.Y;			
 			float directionX = playerX - sprite.Position.X;
 			float directionY = playerY - sprite.Position.Y;
 			Move(directionX/100, directionY/100);			
+>>>>>>> origin/Rui
 		}
 		
 		public void Move(float x, float y)
@@ -87,7 +110,36 @@ namespace Game
 						sprite.Angle = FMath.PI;
 					 else if(y < 0.0f)
 							sprite.Angle = 0;
+<<<<<<< HEAD
+		}
+		
+		public void Killed()
+		{
+			alive = false;
+			sprite.Position = new Vector2(2000, 2000);
+		}
+		
+		public bool Collision(SpriteUV sprite1, SpriteUV sprite2) //Collision detection
+		{	
+			//If any parts of the first sprite are OUTSIDE the second sprite, then false is returned
+			if((sprite1.Position.X + sprite1.Quad.S.X) < sprite2.Position.X)
+				return false;		
+			
+			if(sprite1.Position.Y > (sprite2.Position.Y + sprite2.Quad.S.Y))
+				return false;
+			
+			if(sprite1.Position.X > (sprite2.Quad.S.X + sprite2.Position.X))
+				return false;
+			
+			if((sprite1.Position.Y + sprite1.Quad.S.Y) < sprite2.Position.Y)
+				return false;
+			
+			
+			return true;
+		}
+=======
 		}				
+>>>>>>> origin/Rui
 	}
 }
 

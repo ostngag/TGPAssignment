@@ -15,7 +15,11 @@ namespace Game
 		
 		// Sprites
 		private static TextureInfo	textureInfo;
+<<<<<<< HEAD
+		public  PistolBullet[] 	pistolBullet;
+=======
 		private  PistolBullet[] 	pistolBullet;
+>>>>>>> origin/Rui
 			
 		public PistolBulletSprite pistolSprite;
 		
@@ -94,7 +98,11 @@ namespace Game
 				float bulletVelocityX = FMath.Cos(angle) * 10;
 				float bulletVelocityY = FMath.Sin(angle) * 10;
 				
+<<<<<<< HEAD
+				pistolBullet[bulletCount].Fired(gunPosX, gunPosY, bulletVelocityX, bulletVelocityY, sprite.Angle);
+=======
 				pistolBullet[bulletCount].Fired(gunPosX, gunPosY, bulletVelocityX, bulletVelocityY);
+>>>>>>> origin/Rui
 				
 				PistolBullet.bulletInterval = 0;
 				

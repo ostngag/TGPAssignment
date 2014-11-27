@@ -25,7 +25,7 @@ namespace Game
 		private static float movementSpeed;
 		private static float velocity;
 		private static bool meleeMode;
-		private static Weapon weapon;
+		public Weapon weapon;
 		private static int secondWeaponAmmo;
 		private static int thirdWeaponAmmo;
 		private static int fourthWeaponAmmo;
@@ -197,6 +197,13 @@ namespace Game
 			}
 		}
 		
+<<<<<<< HEAD
+		public void Killed()
+		{
+		}
+		
+=======
+>>>>>>> origin/Rui
 		public SpriteUV GetSprite(){ return charSprite; }
 	}
 }
