@@ -1,0 +1,20 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Game1\States\MenuState.cs">
+    <Files>
+      <File FileName="Game1\AppMain.cs" Line="18" Column="7" />
+      <File FileName="Game1\GameState.cs" Line="17" Column="4" />
+      <File FileName="Game1\State.cs" Line="22" Column="5" />
+      <File FileName="Game1\States\MenuState.cs" Line="17" Column="4" />
+      <File FileName="Game1\States\Level1State.cs" Line="21" Column="3" />
+      <File FileName="Game1\States\Level2State.cs" Line="27" Column="4" />
+      <File FileName="Game1\States\Level3State.cs" Line="22" Column="4" />
+      <File FileName="Game1\States\LoseState.cs" Line="10" Column="4" />
+      <File FileName="Game1\States\WinState.cs" Line="15" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
