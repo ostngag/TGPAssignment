@@ -15,49 +15,43 @@ namespace Game
 		
 		// Sprites
 		private static TextureInfo	textureInfo;
-		public SpriteUV 	currentBullet;
-		private  SpriteUV 	pistolBullet;
-				
+		private  PistolBullet[] 	pistolBullet;
+			
+		public PistolBulletSprite pistolSprite;
+		
 		// Other
 		private static int weaponChosen;		
 		private static int reloadSpeed;
-		private static bool fired;
+		private static int bulletCount = 0;
 		
 		private static float bulletVelocityX, bulletVelocityY;
 			
 		public Weapon(GameScene currentScene)
 		{
+			pistolSprite = new PistolBulletSprite();
+			
+			
 			// Load all weapon bullets
 			
-			textureInfo  = new TextureInfo("/Application/textures/Bullet.png");	
-			//Current bullet values
-			currentBullet	 		= new SpriteUV();
-			currentBullet 			= new SpriteUV(textureInfo);	
-			currentBullet.Quad.S 	= textureInfo.TextureSizef;
 			
-			// Pistol bullet		
-			pistolBullet	 		= new SpriteUV();
-			pistolBullet 			= new SpriteUV(textureInfo);	
-			pistolBullet.Quad.S 	= textureInfo.TextureSizef;
+			// Pistol bullet
+			pistolBullet 			= new PistolBullet[20];
+			
+			for(int i = 0; i < 20; i++)
+			{
+				pistolBullet[i] = new PistolBullet(pistolSprite, currentScene);
+			}
 			
 			weaponChosen = 1;
-			currentBullet = pistolBullet;
-			
-			currentScene.AddChild(currentBullet);
+			//currentBullet = pistolBullet;		
 		}
 		
 		public void Update()
-		{
-			if(fired)
-			{
-				if(currentBullet.Position.X < 900 && currentBullet.Position.X >= 0 && currentBullet.Position.Y < 600 && currentBullet.Position.Y >= 0)
-					currentBullet.Position = new Vector2(currentBullet.Position.X + bulletVelocityX, currentBullet.Position.Y + bulletVelocityY);
-				else
-				{
-					fired = false;
-				}
-			}
+		{			
+			for(int i = 0; i < 20; i++)			
+				pistolBullet[i].Update();				
 			
+			PistolBullet.bulletInterval++;
 			//Console.WriteLine("X: " + currentBullet.Position.X + " Y: " + currentBullet.Position.Y);
 		}
 		
@@ -78,21 +72,34 @@ namespace Game
 			else
 			{
 				// Pistol
-				currentBullet = pistolBullet;
+				//currentBullet = pistolBullet;
 			}
 		}
 		
-		public void Fire(float x, float y, float angle, float radius)
+		public void Fire(SpriteUV sprite)
 		{			
-			if(!fired)
+			if(PistolBullet.bulletInterval > PistolBullet.GetSpeed())
 			{
-				fired = true;
+				if(bulletCount >= 20)
+				bulletCount = 0;
+			
+				float x = sprite.Position.X + (sprite.Quad.S.X/2);
+				float y = sprite.Position.Y + (sprite.Quad.S.Y/2);
+						
+				float angle = sprite.Angle + (FMath.PI/2);
+				float radius = sprite.Quad.S.Y/2;
+	
 				float gunPosX = x + (radius * FMath.Cos(angle));
-				float gunPosY = y + (radius * FMath.Sin(angle));
-				currentBullet.Position = new Vector2(gunPosX, gunPosY);			
-				bulletVelocityX = FMath.Cos(angle / 10.0f);
-				bulletVelocityY = FMath.Sin(angle / 10.0f);
-			}
+				float gunPosY = y + (radius * FMath.Sin(angle));		
+				float bulletVelocityX = FMath.Cos(angle) * 10;
+				float bulletVelocityY = FMath.Sin(angle) * 10;
+				
+				pistolBullet[bulletCount].Fired(gunPosX, gunPosY, bulletVelocityX, bulletVelocityY);
+				
+				PistolBullet.bulletInterval = 0;
+				
+				bulletCount++;
+			}				
 		}
 	}
 }

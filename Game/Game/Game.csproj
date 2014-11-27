@@ -42,6 +42,9 @@
     <Compile Include="Player.cs" />
     <Compile Include="Weapon.cs" />
     <Compile Include="GameScene.cs" />
+    <Compile Include="PistolBullet.cs" />
+    <Compile Include="PistolBulletSprite.cs" />
+    <Compile Include="Enemy.cs" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="shaders\Simple.fcg" />
@@ -58,5 +61,7 @@
     <Content Include="textures\Bullet.png" />
     <Content Include="textures\Plaiyah.png" />
     <Content Include="textures\Greyscreen.png" />
+    <Content Include="textures\Cross.png" />
+    <Content Include="textures\Char.png" />
   </ItemGroup>
 </Project>

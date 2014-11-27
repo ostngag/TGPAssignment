@@ -14,12 +14,14 @@ namespace Game
 	{
 		//Private Variables
 		private Player 		player;
+		private Enemy 		enemy;
 		
 		private TextureInfo textureInfo;
 		private SpriteUV 	background;
 		
 		private float 		previousAnalogRightX = 0.0f;
 		private float       previousAnalogRightY = 0.0f;
+		private bool 		attacking = false;
 		
 		public GameScene()
 		{
@@ -37,6 +39,8 @@ namespace Game
 			
 			player = new Player(this);
 			
+			enemy = new Enemy(this, player);
+			
 			Scheduler.Instance.ScheduleUpdateForTarget(this, 1, false);
 		}
 		
@@ -48,6 +52,9 @@ namespace Game
 		
 		public override void Update(float dt)
 		{			
+			player.Update(dt);			
+			enemy.Update(dt);
+			
 			// Query gamepad for current state
 			var gamePadData = GamePad.GetData(0);
 					
@@ -57,9 +64,14 @@ namespace Game
 			
 			player.Rotate(gamePadData.AnalogRightX, gamePadData.AnalogRightY);
 			
-			Console.WriteLine("X: " + previousAnalogRightX + " Y: " + previousAnalogRightY);
+			//Console.WriteLine("X: " + previousAnalogRightX + " Y: " + previousAnalogRightY);
 			
-			if(previousAnalogRightX != gamePadData.AnalogRightX || previousAnalogRightY != gamePadData.AnalogRightY)
+			if(gamePadData.AnalogRightX != 0 || gamePadData.AnalogRightY != 0)
+				attacking = true;
+			else
+				attacking = false;
+			
+			if(attacking)
 				player.Attack();
 	
 			// To detect if the player is moving the right analog
@@ -70,49 +82,4 @@ namespace Game
 	}
 }
 
-
-//			if(x == 0.0f)
-//				if(y == -1.0f)
-//					charSprite.Angle = 0.0f;
-//				else
-//					charSprite.Angle = FMath.PI;				
-//			else if((x < 0.25f && x > 0.0f))
-//			
-//				else if(x < 0.5f && x > 0.25f)
-//					if(y == 0.0f)
-//						charSprite.Angle = -FMath.PI/2.0f;
-//					else if(y < 0.0f && y > -0.25f)
-//							charSprite.Angle = (-3.0f * FMath.PI)/8.0f;
-//						else if(y > 0f && y < 0.25f)
-//								charSprite.Angle = (-5.0f * FMath.PI)/8.0f;
-//							else if(y < -0.25f && y > -0.5f)
-//									charSprite.Angle = FMath.PI/4.0f;
-//								else if(y > 0.25f && y < 0.5f)
-//										charSprite.Angle = (3.0f * FMath.PI)/4.0f;
-//									else if(y < -0.5f && y > -0.75f)
-//											charSprite.Angle = FMath.PI/8.0f;
-//										else if(y > 0.5f && y < 0.75f)
-//												charSprite.Angle = (7.0f * FMath.PI)/8.0f;
-//					else if(x < 0.75f && x > 0.5f)
-//						if(y == 0.0f)
-//							charSprite.Angle = -FMath.PI/2.0f;
-//						else if(y < 0.0f&& y > -0.25f)
-//								charSprite.Angle = (-3.0f * FMath.PI)/8.0f;
-//							else if(y > 0.0f && y < 0.25f)
-//									charSprite.Angle = (-5.0f * FMath.PI)/8.0f;
-//								else if(y < -0.25f && y > -0.5f)
-//										charSprite.Angle = FMath.PI/4.0f;
-//									else if(y > 0.25f && y < 0.5f)
-//											charSprite.Angle = (3.0f * FMath.PI)/4.0f;
-//						else if(x > 0.75f && x < 1.0f)
-//							if(y == 0.0f)
-//								charSprite.Angle = -FMath.PI/2.0f;
-//							else if(y < 0.0f && y > -0.25f)
-//									charSprite.Angle = (-3 * FMath.PI)/8.0f;
-//								else if(y > 0.0f && y < 0.25f)
-//										charSprite.Angle = (-5.0f * FMath.PI)/8.0f;
-//							else if(x == 1.0f)
-//								charSprite.Angle = -FMath.PI/2.0f;
-//
-//
-			
+	

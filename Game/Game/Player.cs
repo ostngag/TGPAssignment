@@ -32,7 +32,7 @@ namespace Game
 		
 		public Player (GameScene currentScene)
 		{
-			textureInfo  = new TextureInfo("/Application/textures/Plaiyah.png");
+			textureInfo  = new TextureInfo("/Application/textures/Char.png");
 			
 			//Sprite
 			charSprite	 		= new SpriteUV();
@@ -41,8 +41,8 @@ namespace Game
 			charSprite.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width*0.5f,Director.Instance.GL.Context.GetViewport().Height*0.5f);
 			charSprite.Pivot 	= new Vector2(charSprite.Quad.S.X/2, charSprite.Quad.S.Y/2);
 			charSprite.Angle	= 0.0f;
+		
 			
-					
 			//Load character values
 			healthPoints = 100;
 			movementSpeed = 5;
@@ -62,6 +62,8 @@ namespace Game
 		{			
 			//Health
 			//Momentum
+			Console.WriteLine(dt);
+			weapon.Update();
 		}
 		
 		public void Move(float x, float y)
@@ -89,9 +91,6 @@ namespace Game
 						charSprite.Angle = FMath.PI;
 					 else if(y < 0.0f)
 							charSprite.Angle = 0;
-					
-				
-				
 			
 //			if(x == 0.0f)
 //				if(y == -1.0f)
@@ -171,16 +170,13 @@ namespace Game
 //										else if(x == 1.0f)
 //											charSprite.Angle = FMath.PI/2.0f;
 //
-
 			
-			Console.WriteLine(charSprite.Angle);
-			
+			//Console.WriteLine(charSprite.Angle);			
 			
 			//if(y == 1 || y == -1)
-			//	charSprite.Angle = charSprite.Angle * -1;	
-			
+			//	charSprite.Angle = charSprite.Angle * -1;			
 
-			weapon.Update();
+
 		}				
 				
 		public void ChangeWeapon(int weaponNo)
@@ -197,9 +193,11 @@ namespace Game
 			else
 			{
 				//fire weapon
-				weapon.Fire(charSprite.Position.X, charSprite.Position.Y, charSprite.Angle, charSprite.Quad.S.Y);
+				weapon.Fire(charSprite);
 			}
 		}
+		
+		public SpriteUV GetSprite(){ return charSprite; }
 	}
 }
 
