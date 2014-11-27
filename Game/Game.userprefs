@@ -1,13 +1,21 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Game\AppMain.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Game\Player.cs">
     <Files>
-      <File FileName="Game\AppMain.cs" Line="74" Column="52" />
-      <File FileName="Game\Player.cs" Line="13" Column="22" />
+      <File FileName="Game\AppMain.cs" Line="37" Column="29" />
+      <File FileName="Game\Player.cs" Line="33" Column="41" />
+      <File FileName="Game\app.xml" Line="11" Column="1" />
+      <File FileName="Game\GameScene.cs" Line="54" Column="7" />
+      <File FileName="Game\Weapon.cs" Line="81" Column="37" />
+      <File FileName="Game\PistolBullet.cs" Line="18" Column="41" />
+      <File FileName="Game\PistolBulletSprite.cs" Line="12" Column="33" />
+      <File FileName="Game\Enemy.cs" Line="53" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\Player.cs" line="84" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
