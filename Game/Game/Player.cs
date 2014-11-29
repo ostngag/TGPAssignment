@@ -197,13 +197,10 @@ namespace Game
 			}
 		}
 		
-<<<<<<< HEAD
 		public void Killed()
 		{
 		}
 		
-=======
->>>>>>> origin/Rui
 		public SpriteUV GetSprite(){ return charSprite; }
 	}
 }

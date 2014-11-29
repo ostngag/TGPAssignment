@@ -63,6 +63,5 @@
     <Content Include="textures\Greyscreen.png" />
     <Content Include="textures\Cross.png" />
     <Content Include="textures\Char.png" />
-    <Content Include="textures\Badface.png" />
   </ItemGroup>
 </Project>

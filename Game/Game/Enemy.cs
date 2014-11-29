@@ -16,31 +16,22 @@ namespace Game
 		
 		//Sprite
 		private static TextureInfo	textureInfo;
-<<<<<<< HEAD
 		public SpriteUV 	sprite;
-=======
-		private static SpriteUV 	sprite;
->>>>>>> origin/Rui
 		private static float 			angle;
 		
 		//Character
 		private static int healthPoints;
 		private static float movementSpeed;
-<<<<<<< HEAD
+		
 		private static bool alive = true;
-=======
->>>>>>> origin/Rui
+
 		
 		//Player to chase
 		Player player;
 		
 		public Enemy (GameScene currentScene, Player player)
 		{
-<<<<<<< HEAD
-			textureInfo  = new TextureInfo("/Application/textures/Badface.png");
-=======
 			textureInfo  = new TextureInfo("/Application/textures/Bullet.png");
->>>>>>> origin/Rui
 			
 			//Sprite
 			sprite	 		= new SpriteUV();
@@ -66,7 +57,6 @@ namespace Game
 		
 		public void Update(float dt)
 		{		
-<<<<<<< HEAD
 			if(alive)
 			{
 				float playerX = player.GetSprite().Position.X;
@@ -74,14 +64,7 @@ namespace Game
 				float directionX = playerX - sprite.Position.X;
 				float directionY = playerY - sprite.Position.Y;
 				Move(directionX/100, directionY/100);	
-			}	
-=======
-			float playerX = player.GetSprite().Position.X;
-			float playerY = player.GetSprite().Position.Y;			
-			float directionX = playerX - sprite.Position.X;
-			float directionY = playerY - sprite.Position.Y;
-			Move(directionX/100, directionY/100);			
->>>>>>> origin/Rui
+			}						
 		}
 		
 		public void Move(float x, float y)
@@ -110,8 +93,7 @@ namespace Game
 						sprite.Angle = FMath.PI;
 					 else if(y < 0.0f)
 							sprite.Angle = 0;
-<<<<<<< HEAD
-		}
+		}		
 		
 		public void Killed()
 		{
@@ -137,9 +119,6 @@ namespace Game
 			
 			return true;
 		}
-=======
-		}				
->>>>>>> origin/Rui
 	}
 }
 

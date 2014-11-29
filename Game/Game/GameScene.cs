@@ -73,7 +73,7 @@ namespace Game
 			
 			if(attacking)
 				player.Attack();
-			
+	
 			int i = 0;
 			
 			foreach(PistolBullet entries in player.weapon.pistolBullet)
@@ -86,8 +86,8 @@ namespace Game
 				
 				i++;
 			}
-			
-		}		
+		}			
+				
 	}
 }
 
