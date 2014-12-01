@@ -37,7 +37,7 @@ namespace Game
 			sprite	 		= new SpriteUV();
 			sprite 			= new SpriteUV(textureInfo);	
 			sprite.Quad.S 	= textureInfo.TextureSizef;
-			sprite.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width*0.5f,Director.Instance.GL.Context.GetViewport().Height*0.5f);
+			sprite.Position = new Vector2(1000.0f,Director.Instance.GL.Context.GetViewport().Height*0.5f);
 			sprite.Pivot 	= new Vector2(sprite.Quad.S.X/2, sprite.Quad.S.Y/2);
 			sprite.Angle	= 0.0f;		
 					

@@ -30,6 +30,8 @@ namespace Game
 		private static int thirdWeaponAmmo;
 		private static int fourthWeaponAmmo;
 		
+		private static bool alive = true;
+		
 		public Player (GameScene currentScene)
 		{
 			textureInfo  = new TextureInfo("/Application/textures/Char.png");
@@ -62,7 +64,6 @@ namespace Game
 		{			
 			//Health
 			//Momentum
-			Console.WriteLine(dt);
 			weapon.Update();
 		}
 		
@@ -199,9 +200,11 @@ namespace Game
 		
 		public void Killed()
 		{
+			alive = false;
 		}
 		
 		public SpriteUV GetSprite(){ return charSprite; }
+		public bool IsAlive(){ return alive; }
 	}
 }
 

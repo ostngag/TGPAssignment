@@ -45,6 +45,11 @@
     <Compile Include="PistolBullet.cs" />
     <Compile Include="PistolBulletSprite.cs" />
     <Compile Include="Enemy.cs" />
+    <Compile Include="SoundManager.cs" />
+    <Compile Include="Observer.cs" />
+    <Compile Include="SceneObstruction.cs" />
+    <Compile Include="Collision.cs" />
+    <Compile Include="Entity.cs" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="shaders\Simple.fcg" />

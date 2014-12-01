@@ -51,29 +51,33 @@ namespace Game
 		}
 		
 		public override void Update(float dt)
-		{			
+		{		
 			player.Update(dt);			
 			enemy.Update(dt);
 			
-			// Query gamepad for current state
-			var gamePadData = GamePad.GetData(0);
-					
-			player.Move(gamePadData.AnalogLeftX * 5.0f, -gamePadData.AnalogLeftY * 5.0f);
-			
-			//Console.WriteLine("X: " + gamePadData.AnalogLeftX + "Y: " + gamePadData.AnalogLeftY);
-			
-			player.Rotate(gamePadData.AnalogRightX, gamePadData.AnalogRightY);
-			
-			//Console.WriteLine("X: " + previousAnalogRightX + " Y: " + previousAnalogRightY);
-			
-			if(gamePadData.AnalogRightX != 0 || gamePadData.AnalogRightY != 0)
-				attacking = true;
-			else
-				attacking = false;
-			
-			if(attacking)
-				player.Attack();
+			if(player.IsAlive())
+			{
+				// Query gamepad for current state
+				var gamePadData = GamePad.GetData(0);
+						
+				player.Move(gamePadData.AnalogLeftX * 5.0f, -gamePadData.AnalogLeftY * 5.0f);
+				
+				//Console.WriteLine("X: " + gamePadData.AnalogLeftX + "Y: " + gamePadData.AnalogLeftY);
+				
+				player.Rotate(gamePadData.AnalogRightX, gamePadData.AnalogRightY);
+				
+				//Console.WriteLine("X: " + previousAnalogRightX + " Y: " + previousAnalogRightY);
+				
+				if(gamePadData.AnalogRightX != 0 || gamePadData.AnalogRightY != 0)
+					attacking = true;
+				else
+					attacking = false;
+				
+				if(attacking)
+					player.Attack();
+			}
 	
+			
 			int i = 0;
 			
 			foreach(PistolBullet entries in player.weapon.pistolBullet)
@@ -86,8 +90,12 @@ namespace Game
 				
 				i++;
 			}
-		}			
-				
+			
+			if(enemy.Collision(player.GetSprite(), enemy.sprite))
+			{
+				player.Killed();
+			}					
+		}						
 	}
 }
 
