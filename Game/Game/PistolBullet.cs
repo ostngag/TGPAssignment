@@ -7,9 +7,7 @@ using Sce.PlayStation.HighLevel.GameEngine2D;
 using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 
 namespace Game
-{
-
-	
+{	
 	public class PistolBullet
 	{
 		private bool fired = false;
@@ -39,6 +37,11 @@ namespace Game
 					sprite.Position = new Vector2(-10000, 10000);
 					fired = false;
 				}				
+		}
+		
+		public void Move(float x, float y)
+		{
+			sprite.Position = new Vector2(sprite.Position.X + x, sprite.Position.Y + y);
 		}
 		
 		public void Fired(float posX, float posY, float velocityX, float velocityY, float angle)

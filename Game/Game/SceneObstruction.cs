@@ -13,13 +13,13 @@ namespace Game
 		private SpriteUV 	objectSprite;
 		private Collision	collision;	
 
-		public SceneObstruction (GameScene currentScene, TextureInfo texture, int posX, int posY)
+		public SceneObstruction (GameScene currentScene, TextureInfo texture, float posX, float posY, float sizeX, float sizeY)
 		{			
 			//Sprite
 			objectSprite	 		= new SpriteUV();
 			objectSprite 			= new SpriteUV(texture);	
-			objectSprite.Quad.S 	= texture.TextureSizef;
-			objectSprite.Position = new Vector2(posX, posY);
+			objectSprite.Quad.S 	= new Vector2(sizeX, sizeY);
+			objectSprite.Position	= new Vector2(posX, posY);
 			
 			currentScene.AddChild(objectSprite);
 		}
@@ -27,7 +27,9 @@ namespace Game
 		public void Update()
 		{
 			
-		}		
+		}	
+		
+		public SpriteUV GetSprite(){ return objectSprite; }		
 	}
 }
 

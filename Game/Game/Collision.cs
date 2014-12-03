@@ -12,7 +12,7 @@ namespace Game
 	{
 		public Collision (){}
 		
-		public bool calculateColl(SpriteUV sprite1, SpriteUV sprite2) //Collision detection
+		public bool calcCollision(SpriteUV sprite1, SpriteUV sprite2) //Collision detection
 		{	
 			//If any parts of the first sprite are OUTSIDE the second sprite, then false is returned
 			if((sprite1.Position.X + sprite1.Quad.S.X) < sprite2.Position.X)

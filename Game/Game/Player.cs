@@ -9,11 +9,10 @@ using Sce.PlayStation.Core.Input;
 
 namespace Game
 {
-	public class Player
+	public class Player : Entity
 	{
 		//Private Variables
-		
-		
+			
 		//Sprite
 		private static TextureInfo	textureInfo;
 		private static SpriteUV 	charSprite;

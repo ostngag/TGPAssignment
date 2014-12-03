@@ -50,6 +50,7 @@
     <Compile Include="SceneObstruction.cs" />
     <Compile Include="Collision.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="TestEnemy.cs" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="shaders\Simple.fcg" />
@@ -68,5 +69,8 @@
     <Content Include="textures\Greyscreen.png" />
     <Content Include="textures\Cross.png" />
     <Content Include="textures\Char.png" />
+    <Content Include="textures\Arena2.jpg" />
+    <Content Include="textures\Black.png" />
+    <Content Include="textures\Trans.png" />
   </ItemGroup>
 </Project>

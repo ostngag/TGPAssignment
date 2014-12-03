@@ -9,7 +9,7 @@ using Sce.PlayStation.Core.Input;
 
 namespace Game
 {
-	public class Enemy
+	public class Enemy : Entity
 	{
 		//Private Variables
 		
@@ -17,19 +17,21 @@ namespace Game
 		//Sprite
 		private static TextureInfo	textureInfo;
 		public SpriteUV 	sprite;
-		private static float 			angle;
+		private float 			angle;
 		
 		//Character
-		private static int healthPoints;
+		private int healthPoints;
 		private static float movementSpeed;
 		
-		private static bool alive = true;
+		private bool alive = true;
+		
+		private bool collidedWithScene;
 
 		
 		//Player to chase
 		Player player;
 		
-		public Enemy (GameScene currentScene, Player player)
+		public Enemy (GameScene currentScene, Player player, float posX, float posY)
 		{
 			textureInfo  = new TextureInfo("/Application/textures/Bullet.png");
 			
@@ -37,7 +39,7 @@ namespace Game
 			sprite	 		= new SpriteUV();
 			sprite 			= new SpriteUV(textureInfo);	
 			sprite.Quad.S 	= textureInfo.TextureSizef;
-			sprite.Position = new Vector2(1000.0f,Director.Instance.GL.Context.GetViewport().Height*0.5f);
+			sprite.Position = new Vector2(posX, posY);
 			sprite.Pivot 	= new Vector2(sprite.Quad.S.X/2, sprite.Quad.S.Y/2);
 			sprite.Angle	= 0.0f;		
 					
@@ -58,12 +60,18 @@ namespace Game
 		public void Update(float dt)
 		{		
 			if(alive)
-			{
+			{										
 				float playerX = player.GetSprite().Position.X;
 				float playerY = player.GetSprite().Position.Y;			
 				float directionX = playerX - sprite.Position.X;
 				float directionY = playerY - sprite.Position.Y;
-				Move(directionX/100, directionY/100);	
+				
+				// If the enemy has collided with the scenery, then path around said object.
+				if(collidedWithScene)
+					PathFind();
+				
+				Move(directionX/100, directionY/100);
+				Rotate(directionX, directionY);								
 			}						
 		}
 		
@@ -73,32 +81,22 @@ namespace Game
 		}
 		
 		public void Rotate(float x, float y)
-		{				
-			if(x > 0.0f)
-				if(y > 0.0f)
-					sprite.Angle = (-3.0f * FMath.PI)/4.0f;
-				else if(y < 0.0f)
-						sprite.Angle = -FMath.PI/4.0f
-					;
-					 else
-						sprite.Angle = -FMath.PI/2.0f;
-			else if(x < 0.0f)
-					if(y > 0.0f)
-						sprite.Angle = (3.0f * FMath.PI)/4.0f;
-					else if(y < 0.0f)
-							sprite.Angle = FMath.PI/4.0f;
-						 else
-							sprite.Angle = FMath.PI/2.0f;
-				else if(y > 0.0f)
-						sprite.Angle = FMath.PI;
-					 else if(y < 0.0f)
-							sprite.Angle = 0;
+		{		
+			if(x < 0)
+				sprite.Angle = FMath.Atan(y/x) + (FMath.PI/2);
+			else
+				sprite.Angle = FMath.Atan(y/x) - (FMath.PI/2);
 		}		
 		
 		public void Killed()
 		{
 			alive = false;
 			sprite.Position = new Vector2(2000, 2000);
+		}
+		
+		public void PathFind()
+		{
+			
 		}
 		
 		public bool Collision(SpriteUV sprite1, SpriteUV sprite2) //Collision detection

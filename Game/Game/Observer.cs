@@ -13,8 +13,10 @@ namespace Game
 {
 	public class Observer
 	{
-		//public virtual ~Observer () {}
-		//public virtual void OnNotify(const Entity &entity, Event event) = 0;
+		public Observer() {}
+	
+		//public ~Observer () {}
+		//public virtual void OnNotify(const Entity entity, Event event) = 0;
 		
 	}
 }
