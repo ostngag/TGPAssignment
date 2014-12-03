@@ -15,13 +15,16 @@ namespace Game
 		private float 			angle;
 		protected int baseClassAccess;
 		
+		// This enum is needed to sort out collisions between entities
+		protected enum EntityType {player, enemy, bullet, scene};
+		protected EntityType type;
 		
 		public Entity ()
 		{
 			
 		}		
 		
-		public virtual void Update()
+		public virtual void Update(float dt)
 		{
 		}
 		

@@ -12,12 +12,13 @@ namespace Game
 	public class Player : Entity
 	{
 		//Private Variables
-			
+		
 		//Sprite
 		private static TextureInfo	textureInfo;
 		private static SpriteUV 	charSprite;
 		private static float 			angle;
 		private static SpriteUV		bulletSprite;
+		private static EntityType 	type = EntityType.player;
 		
 		//Character
 		private static int healthPoints;
@@ -59,11 +60,11 @@ namespace Game
 			textureInfo.Dispose();
 		}
 		
-		public void Update(float dt)
+		public override void Update(float dt)
 		{			
 			//Health
 			//Momentum
-			weapon.Update();
+			weapon.Update(dt);
 		}
 		
 		public void Move(float x, float y)

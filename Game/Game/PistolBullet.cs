@@ -8,13 +8,15 @@ using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 
 namespace Game
 {	
-	public class PistolBullet
+	public class PistolBullet : Entity
 	{
 		private bool fired = false;
 		public SpriteUV sprite;
 		private float bulletVelocityX, bulletVelocityY;
 		public static int bulletInterval = 21;
 		private static int speed = 10;
+		
+		private static EntityType 	type = EntityType.bullet;
 		
 		public PistolBullet (PistolBulletSprite textureInfo, GameScene currentScene)
 		{	
@@ -27,7 +29,7 @@ namespace Game
 			currentScene.AddChild(sprite);
 		}
 		
-		public void Update()
+		public override void Update(float dt)
 		{
 			if(fired)
 				if(sprite.Position.X < 900 && sprite.Position.X >= 0 && sprite.Position.Y < 600 && sprite.Position.Y >= 0)

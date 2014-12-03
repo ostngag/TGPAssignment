@@ -2,16 +2,17 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Game\GameScene.cs">
     <Files>
-      <File FileName="Game\AppMain.cs" Line="34" Column="1" />
-      <File FileName="Game\Player.cs" Line="11" Column="2" />
+      <File FileName="Game\AppMain.cs" Line="34" Column="31" />
+      <File FileName="Game\Player.cs" Line="21" Column="30" />
       <File FileName="Game\app.xml" Line="11" Column="1" />
-      <File FileName="Game\GameScene.cs" Line="18" Column="3" />
-      <File FileName="Game\Weapon.cs" Line="69" Column="5" />
-      <File FileName="Game\PistolBullet.cs" Line="46" Column="3" />
+      <File FileName="Game\GameScene.cs" Line="202" Column="31" />
+      <File FileName="Game\Weapon.cs" Line="30" Column="4" />
+      <File FileName="Game\PistolBullet.cs" Line="8" Column="1" />
       <File FileName="Game\PistolBulletSprite.cs" Line="17" Column="4" />
-      <File FileName="Game\Entity.cs" Line="23" Column="3" />
-      <File FileName="Game\Collision.cs" Line="15" Column="15" />
-      <File FileName="Game\SceneObstruction.cs" Line="12" Column="3" />
+      <File FileName="Game\Entity.cs" Line="33" Column="35" />
+      <File FileName="Game\Collision.cs" Line="15" Column="1" />
+      <File FileName="Game\SceneObstruction.cs" Line="20" Column="12" />
+      <File FileName="Game\Enemy.cs" Line="18" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

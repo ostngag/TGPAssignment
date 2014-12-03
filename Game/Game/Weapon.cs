@@ -46,10 +46,10 @@ namespace Game
 			//currentBullet = pistolBullet;		
 		}
 		
-		public void Update()
+		public void Update(float dt)
 		{			
 			for(int i = 0; i < 20; i++)			
-				pistolBullet[i].Update();				
+				pistolBullet[i].Update(dt);				
 			
 			PistolBullet.bulletInterval++;
 			//Console.WriteLine("X: " + currentBullet.Position.X + " Y: " + currentBullet.Position.Y);

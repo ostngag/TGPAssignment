@@ -8,11 +8,13 @@ using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 
 namespace Game
 {
-	public class SceneObstruction
+	public class SceneObstruction : Entity
 	{
 		private SpriteUV 	objectSprite;
 		private Collision	collision;	
-
+		
+		private static EntityType	type = EntityType.scene;
+		
 		public SceneObstruction (GameScene currentScene, TextureInfo texture, float posX, float posY, float sizeX, float sizeY)
 		{			
 			//Sprite
@@ -24,7 +26,7 @@ namespace Game
 			currentScene.AddChild(objectSprite);
 		}
 		
-		public void Update()
+		public override void Update(float dt)
 		{
 			
 		}	

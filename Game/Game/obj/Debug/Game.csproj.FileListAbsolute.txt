@@ -358,3 +358,5 @@ E:\Game\Game\bin\Debug\Game-signed\Application\textures\Arena2.jpg
 E:\Game\Game\bin\Debug\Game-signed\Application\textures\Black.png
 E:\Game\Game\bin\Debug\Game-unsigned\Application\textures\Trans.png
 E:\Game\Game\bin\Debug\Game-signed\Application\textures\Trans.png
+C:\Users\mizukami\Desktop\Game\Game\bin\Debug\Game-unsigned\Application\textures\Trans.png
+C:\Users\mizukami\Desktop\Game\Game\bin\Debug\Game-signed\Application\textures\Trans.png

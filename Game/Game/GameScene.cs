@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 using Sce.PlayStation.Core;
 using Sce.PlayStation.Core.Environment;
@@ -27,7 +28,7 @@ namespace Game
 		private float       previousAnalogRightY = 0.0f;
 		private bool 		attacking = false;
 		
-		public enum EntityType{bullet, enemy, player, scene};
+		//enum EntityType{bullet, enemy, player, scene};
 		
 		public GameScene()
 		{
@@ -54,8 +55,8 @@ namespace Game
 			
 			for(int i = 0; i < 20; i++)
 			{
-				x = (float)(1000 * dX.NextDouble());
-				y = (float)(1000 * dY.NextDouble());
+				x = (float)(10000 * dX.NextDouble());
+				y = (float)(10000 * dY.NextDouble());
 				
 				enemy[i] = new Enemy(this, player, x, y);
 			}	
@@ -64,6 +65,8 @@ namespace Game
 			textureInfo			= new TextureInfo("/Application/textures/Trans.png");
 			
 			SetUpSceneObjects(textureInfo);
+			
+			
 			
 			Scheduler.Instance.ScheduleUpdateForTarget(this, 1, false);
 		}
@@ -138,15 +141,25 @@ namespace Game
 		
 		public override void Update(float dt)
 		{		
-			player.Update(dt);	
-			 
-			for(int i = 0; i < 20; i++)
-				enemy[i].Update(dt);
+			// Add all entities to a list
+			List<Entity> entities = new List<Entity>();	
 			
-			//ENUMSS
+			entities.Add(player);
 			
-			//for(int i = 0; i < 16; i++)
-			//	sceneObject[i].Update;
+			for(int i = 0; i < 20; i++)			
+				entities.Add(enemy[i]);
+			
+			for(int i = 0; i < 16; i++)			
+				entities.Add(sceneObject[i]);
+			
+			foreach(PistolBullet bullets in player.weapon.pistolBullet)
+				entities.Add(bullets);
+				
+			
+			// Update all entities
+			foreach(Entity entries in entities)
+				entries.Update(dt);
+			
 			
 			// Query gamepad for current state
 			var gamePadData = GamePad.GetData(0);
@@ -167,12 +180,7 @@ namespace Game
 					o++;
 				}
 					
-				
-				//Console.WriteLine("X: " + gamePadData.AnalogLeftX + "Y: " + gamePadData.AnalogLeftY);
-				
 				player.Rotate(gamePadData.AnalogRightX, gamePadData.AnalogRightY);
-				
-				//Console.WriteLine("X: " + previousAnalogRightX + " Y: " + previousAnalogRightY);
 				
 				if(gamePadData.AnalogRightX != 0 || gamePadData.AnalogRightY != 0)
 					attacking = true;
@@ -183,10 +191,12 @@ namespace Game
 					player.Attack();
 			}
 			
-			//Console.Write(Children + "\n");
-	
-			
-			// Use i to access array variables
+			CheckCollisions(entities);
+		}
+		
+		public void CheckCollisions(List<Entity> entities)
+		{
+						// Use i to access array variables
 			int k = 0;
 			
 			for(int j = 0; j < 20; j++)
@@ -209,6 +219,12 @@ namespace Game
 				{
 					player.Killed();
 				}
+				
+				for(int i = 0; i < 20; i++)
+					if(collChecker.calcCollision(enemy[i].sprite, enemy[j].sprite))
+					{
+						enemy[j].PathFind(enemy[j].sprite, enemy[i].sprite);				
+					}
 			}
 
 			
@@ -239,10 +255,7 @@ namespace Game
 				if(k > 11)
 					k = 0;
 			}
-				
-				   
-			
-		}						
+		}
 	}
 }
 
