@@ -11,8 +11,7 @@ namespace Game
 	public abstract class Entity
 	{
 		// All entities exhibit this properties
-		private SpriteUV 	sprite;
-		private float 			angle;
+		protected SpriteUV 	sprite;
 		protected int baseClassAccess;
 		
 		// This enum is needed to sort out collisions between entities
@@ -20,8 +19,7 @@ namespace Game
 		protected EntityType type;
 		
 		public Entity ()
-		{
-			
+		{			
 		}		
 		
 		public virtual void Update(float dt)
@@ -30,30 +28,10 @@ namespace Game
 		
 		public virtual void Move(float x, float y)
 		{
-			sprite.Position = new Vector2(sprite.Position.X + x, sprite.Position.Y + y);
 		}
 		
 		public virtual void Rotate(float x, float y)
 		{				
-		//	if(x > 0.0f)
-		//		if(y > 0.0f)
-		//			sprite.Angle = (-3.0f * FMath.PI)/4.0f;
-		//		else if(y < 0.0f)
-		//				sprite.Angle = -FMath.PI/4.0f
-		//			;
-		//			 else
-		//				sprite.Angle = -FMath.PI/2.0f;
-		//	else if(x < 0.0f)
-		//			if(y > 0.0f)
-		//				sprite.Angle = (3.0f * FMath.PI)/4.0f;
-		//			else if(y < 0.0f)
-		//					sprite.Angle = FMath.PI/4.0f;
-		//				 else
-		//					sprite.Angle = FMath.PI/2.0f;
-		//		else if(y > 0.0f)
-		//				sprite.Angle = FMath.PI;
-		//			 else if(y < 0.0f)
-		//					sprite.Angle = 0;
 		}
 		
 		public virtual bool Collision(SpriteUV sprite1, SpriteUV sprite2) // Collision detection

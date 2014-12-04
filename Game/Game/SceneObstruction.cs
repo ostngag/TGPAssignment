@@ -11,7 +11,6 @@ namespace Game
 	public class SceneObstruction : Entity
 	{
 		private SpriteUV 	objectSprite;
-		private Collision	collision;	
 		
 		private static EntityType	type = EntityType.scene;
 		
@@ -46,4 +45,3 @@ namespace Game
 		public override EntityType GetEntityType(){ return type; }
 	}
 }
-

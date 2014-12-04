@@ -18,9 +18,6 @@ namespace Game
 		//Game Entities
 		private static GameScene currentScene;
 		
-		//Other Variables
-		private static int screenWidth, screenHeight;
-		
 		public static void Main (string[] args)
 		{
 			Initialize ();

@@ -12,19 +12,12 @@ namespace Game
 	{
 		// Private variables
 		
-		
-		// Sprites
-		private static TextureInfo	textureInfo;
 		public  PistolBullet[] 	pistolBullet;
 			
 		public PistolBulletSprite pistolSprite;
 		
 		// Other
-		private static int weaponChosen;		
-		private static int reloadSpeed;
 		private static int bulletCount = 0;
-		
-		private static float bulletVelocityX, bulletVelocityY;
 			
 		public Weapon(GameScene currentScene)
 		{
@@ -40,10 +33,7 @@ namespace Game
 			for(int i = 0; i < 20; i++)
 			{
 				pistolBullet[i] = new PistolBullet(pistolSprite, currentScene);
-			}
-			
-			weaponChosen = 1;
-			//currentBullet = pistolBullet;		
+			}	
 		}
 		
 		public void Update(float dt)

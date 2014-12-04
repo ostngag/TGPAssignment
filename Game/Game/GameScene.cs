@@ -24,8 +24,6 @@ namespace Game
 		
 		private Collision collChecker;
 		
-		private float 		previousAnalogRightX = 0.0f;
-		private float       previousAnalogRightY = 0.0f;
 		private bool 		attacking = false;
 		
 		//enum EntityType{bullet, enemy, player, scene};

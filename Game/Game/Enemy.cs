@@ -16,11 +16,7 @@ namespace Game
 		
 		//Sprite
 		public SpriteUV 	sprite;
-		private float 			angle;
 		private static EntityType 	type = EntityType.enemy;
-		//Character
-		private int healthPoints;
-		private  float movementSpeed;
 		
 		private bool alive = true;
 		
@@ -40,10 +36,6 @@ namespace Game
 			sprite.Pivot 	= new Vector2(sprite.Quad.S.X/2, sprite.Quad.S.Y/2);
 			sprite.Angle	= 0.0f;		
 					
-			//Load character values
-			healthPoints = 100;
-			movementSpeed = 5;
-			
 			this.player = player;
 			
 			currentScene.AddChild(sprite);	
@@ -74,7 +66,7 @@ namespace Game
 			sprite.Position = new Vector2(sprite.Position.X + x, sprite.Position.Y + y);
 		}
 		
-		public void Rotate(float x, float y)
+		public override void Rotate(float x, float y)
 		{		
 			if(x < 0)
 				sprite.Angle = FMath.Atan(y/x) + (FMath.PI/2);
@@ -110,23 +102,23 @@ namespace Game
 				//pistolBullet[bulletCount].Fired(gunPosX, gunPosY, bulletVelocityX, bulletVelocityY, sprite.Angle);								
 		}
 		
-		public int Collision(SpriteUV sprite1, SpriteUV sprite2) //Collision detection
+		public override bool Collision(SpriteUV sprite1, SpriteUV sprite2) //Collision detection
 		{	
 			//If any parts of the first sprite are OUTSIDE the second sprite, then false is returned
 			if((sprite1.Position.X + sprite1.Quad.S.X) > sprite2.Position.X)
-				return 1;		
+				return false;		
 			
 			if(sprite1.Position.Y < (sprite2.Position.Y + sprite2.Quad.S.Y))
-				return 2;
+				return false;
 			
 			if(sprite1.Position.X < (sprite2.Quad.S.X + sprite2.Position.X))
-				return 3;
+				return false;
 			
 			if((sprite1.Position.Y + sprite1.Quad.S.Y) > sprite2.Position.Y)
-				return 4;
+				return false;
 			
 			
-			return 0;
+			return true;
 		}
 		
 		public override void SortCollision(EntityType type)

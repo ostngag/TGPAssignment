@@ -370,3 +370,7 @@ H:\Git Repos\TGPAssignment\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Appli
 H:\Git Repos\TGPAssignment\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\SpriteLaser.png
 H:\Git Repos\TGPAssignment\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\Player.png
 H:\Git Repos\TGPAssignment\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\Player.png
+C:\Users\mizukami\Desktop\Game\Game\bin\Debug\Game-unsigned\Application\textures\SpriteLaser.png
+C:\Users\mizukami\Desktop\Game\Game\bin\Debug\Game-unsigned\Application\textures\Player.png
+C:\Users\mizukami\Desktop\Game\Game\bin\Debug\Game-signed\Application\textures\SpriteLaser.png
+C:\Users\mizukami\Desktop\Game\Game\bin\Debug\Game-signed\Application\textures\Player.png
