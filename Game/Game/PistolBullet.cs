@@ -41,7 +41,7 @@ namespace Game
 				}				
 		}
 		
-		public void Move(float x, float y)
+		public override void Move(float x, float y)
 		{
 			sprite.Position = new Vector2(sprite.Position.X + x, sprite.Position.Y + y);
 		}
@@ -61,8 +61,17 @@ namespace Game
 			fired = false;
 		}
 		
+		public override void SortCollision(EntityType type)
+		{
+			if(type == EntityType.enemy)			
+				HitEntity();						
+		}
 		
 		public static int GetSpeed() { return speed; }
+		
+		public override SpriteUV GetSprite(){ return sprite; }
+		
+		public override EntityType GetEntityType(){ return type; }
 	}
 }
 

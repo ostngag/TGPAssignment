@@ -15,7 +15,7 @@ namespace Game
 		
 		public PistolBulletSprite ()
 		{
-			textureInfo  = new TextureInfo("/Application/textures/Bullet.png");	
+			textureInfo  = new TextureInfo("/Application/textures/SpriteLaser.png");	
 		}
 		
 		public TextureInfo GetTextureInfo() { return textureInfo; }

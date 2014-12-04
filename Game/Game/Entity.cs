@@ -11,12 +11,12 @@ namespace Game
 	public abstract class Entity
 	{
 		// All entities exhibit this properties
-		private SpriteUV 	charSprite;
+		private SpriteUV 	sprite;
 		private float 			angle;
 		protected int baseClassAccess;
 		
 		// This enum is needed to sort out collisions between entities
-		protected enum EntityType {player, enemy, bullet, scene};
+		public enum EntityType {player, enemy, bullet, scene};
 		protected EntityType type;
 		
 		public Entity ()
@@ -30,7 +30,7 @@ namespace Game
 		
 		public virtual void Move(float x, float y)
 		{
-			charSprite.Position = new Vector2(charSprite.Position.X + x, charSprite.Position.Y + y);
+			sprite.Position = new Vector2(sprite.Position.X + x, sprite.Position.Y + y);
 		}
 		
 		public virtual void Rotate(float x, float y)
@@ -74,6 +74,12 @@ namespace Game
 			
 			return true;
 		}
+		
+		public virtual void SortCollision(EntityType type){}
+		
+		public virtual SpriteUV GetSprite(){ return sprite; }
+		
+		public virtual EntityType GetEntityType(){ return type; }
 	}
 }
 

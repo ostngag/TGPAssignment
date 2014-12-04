@@ -360,3 +360,13 @@ E:\Game\Game\bin\Debug\Game-unsigned\Application\textures\Trans.png
 E:\Game\Game\bin\Debug\Game-signed\Application\textures\Trans.png
 C:\Users\mizukami\Desktop\Game\Game\bin\Debug\Game-unsigned\Application\textures\Trans.png
 C:\Users\mizukami\Desktop\Game\Game\bin\Debug\Game-signed\Application\textures\Trans.png
+H:\Git Repos\TGPAssignment\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\Arena2.jpg
+H:\Git Repos\TGPAssignment\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\Black.png
+H:\Git Repos\TGPAssignment\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\Trans.png
+H:\Git Repos\TGPAssignment\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\Arena2.jpg
+H:\Git Repos\TGPAssignment\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\Black.png
+H:\Git Repos\TGPAssignment\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\Trans.png
+H:\Git Repos\TGPAssignment\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\SpriteLaser.png
+H:\Git Repos\TGPAssignment\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\SpriteLaser.png
+H:\Git Repos\TGPAssignment\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\Player.png
+H:\Git Repos\TGPAssignment\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\Player.png

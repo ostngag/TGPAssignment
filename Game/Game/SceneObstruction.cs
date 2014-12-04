@@ -31,7 +31,19 @@ namespace Game
 			
 		}	
 		
-		public SpriteUV GetSprite(){ return objectSprite; }		
+		public override void Move(float x, float y)
+		{
+			objectSprite.Position = new Vector2(objectSprite.Position.X + x, objectSprite.Position.Y + y);
+		}
+		
+	    public override void SortCollision(EntityType type)
+		{
+			
+		}
+		
+		public override SpriteUV GetSprite(){ return objectSprite; }
+		
+		public override EntityType GetEntityType(){ return type; }
 	}
 }
 

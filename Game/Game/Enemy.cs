@@ -15,7 +15,6 @@ namespace Game
 		
 		
 		//Sprite
-		private static TextureInfo	textureInfo;
 		public SpriteUV 	sprite;
 		private float 			angle;
 		private static EntityType 	type = EntityType.enemy;
@@ -31,10 +30,8 @@ namespace Game
 		//Player to chase
 		Player player;
 		
-		public Enemy (GameScene currentScene, Player player, float posX, float posY)
-		{
-			textureInfo  = new TextureInfo("/Application/textures/Bullet.png");
-			
+		public Enemy (GameScene currentScene, Player player, float posX, float posY, TextureInfo textureInfo)
+		{			
 			//Sprite
 			sprite	 		= new SpriteUV();
 			sprite 			= new SpriteUV(textureInfo);	
@@ -52,13 +49,10 @@ namespace Game
 			currentScene.AddChild(sprite);	
 		}
 		
-		public void Dispose()
-		{
-			textureInfo.Dispose();
-		}
-		
 		public override void Update(float dt)
 		{		
+			Console.WriteLine(dt);
+			
 			if(alive)
 			{										
 				float playerX = player.GetSprite().Position.X;
@@ -75,7 +69,7 @@ namespace Game
 			}						
 		}
 		
-		public void Move(float x, float y)
+		public override void Move(float x, float y)
 		{
 			sprite.Position = new Vector2(sprite.Position.X + x, sprite.Position.Y + y);
 		}
@@ -134,6 +128,22 @@ namespace Game
 			
 			return 0;
 		}
+		
+		public override void SortCollision(EntityType type)
+		{
+			if(type == EntityType.bullet)			
+				Killed ();
+						
+			if(type == EntityType.scene)
+			{
+				// Path find
+			}
+		}
+		
+		public override SpriteUV GetSprite(){ return sprite; }
+		
+		public override EntityType GetEntityType(){ return type; }
+
 	}
 }
 

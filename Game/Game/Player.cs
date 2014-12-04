@@ -14,7 +14,6 @@ namespace Game
 		//Private Variables
 		
 		//Sprite
-		private static TextureInfo	textureInfo;
 		private static SpriteUV 	charSprite;
 		private static float 			angle;
 		private static SpriteUV		bulletSprite;
@@ -32,10 +31,8 @@ namespace Game
 		
 		private static bool alive = true;
 		
-		public Player (GameScene currentScene)
-		{
-			textureInfo  = new TextureInfo("/Application/textures/Char.png");
-			
+		public Player (GameScene currentScene, TextureInfo textureInfo)
+		{			
 			//Sprite
 			charSprite	 		= new SpriteUV();
 			charSprite 			= new SpriteUV(textureInfo);	
@@ -55,11 +52,6 @@ namespace Game
 			currentScene.AddChild(charSprite);			
 		}
 		
-		public void Dispose()
-		{
-			textureInfo.Dispose();
-		}
-		
 		public override void Update(float dt)
 		{			
 			//Health
@@ -67,7 +59,7 @@ namespace Game
 			weapon.Update(dt);
 		}
 		
-		public void Move(float x, float y)
+		public override void Move(float x, float y)
 		{
 			charSprite.Position = new Vector2(charSprite.Position.X + x, charSprite.Position.Y + y);
 		}
@@ -203,7 +195,16 @@ namespace Game
 			alive = false;
 		}
 		
-		public SpriteUV GetSprite(){ return charSprite; }
+		public override void SortCollision(EntityType type)
+		{
+			if(type == EntityType.enemy)			
+				Killed ();
+		}
+		
+		public override SpriteUV GetSprite (){ return charSprite; }
+		
+		public override EntityType GetEntityType(){ return type; }
+		
 		public bool IsAlive(){ return alive; }
 	}
 }
