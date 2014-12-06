@@ -75,5 +75,6 @@
     <Content Include="textures\SpriteLaser.png" />
     <Content Include="textures\Player.png" />
     <Content Include="textures\Arena.png" />
+    <Content Include="smallexplosion.wav" />
   </ItemGroup>
 </Project>

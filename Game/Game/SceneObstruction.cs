@@ -22,8 +22,6 @@ namespace Game
 			objectSprite.Quad.S 	= new Vector2(sizeX, sizeY);
 			objectSprite.Position	= new Vector2(posX, posY);
 			
-			Console.WriteLine(objectSprite.Position);
-			
 			currentScene.AddChild(objectSprite);
 		}
 		

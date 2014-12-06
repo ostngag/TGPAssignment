@@ -21,7 +21,7 @@ namespace Game
 		private bool alive = true;
 		
 		private bool collidedWithScene;
-
+		private static SoundManager sounds;	
 		
 		//Player to chase
 		Player player;
@@ -37,6 +37,7 @@ namespace Game
 			sprite.Angle	= 0.0f;		
 					
 			this.player = player;
+			sounds = new SoundManager();
 			
 			currentScene.AddChild(sprite);	
 		}
@@ -75,6 +76,7 @@ namespace Game
 		public void Killed()
 		{
 			alive = false;
+			sounds.Play(0, 1.0f, false);
 			sprite.Position = new Vector2(2000, 2000);
 		}	
 		

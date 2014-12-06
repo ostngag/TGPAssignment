@@ -14,17 +14,15 @@ namespace Game
 	public class GameScene : Scene
 	{
 		//Private Variables
-		private Player 		player;
-		private Enemy[] 	enemy;
+		private Player 				player;
+		private Enemy[] 			enemy;
 		
-		private TextureInfo textureInfo;
-		private SpriteUV 	background;
+		private TextureInfo 		textureInfo;
+		private SpriteUV 			background;
 		
-		private SceneObstruction[] sceneObject;
-		
-		private Collision collChecker;
-		
-		private bool 		attacking = false;
+		private SceneObstruction[] 	sceneObject;		
+		private Collision 			collChecker;		
+		private bool 				attacking = false;
 		
 		//enum EntityType{bullet, enemy, player, scene};
 		
@@ -34,7 +32,7 @@ namespace Game
 			
 			collChecker = new Collision();
 			
-			// Setup all entities and sprites
+			// Setup all entities and sprites    (0.0f * (background.Scale.X - 1.0f)
 			
 			// Background
 			textureInfo 		= new TextureInfo("/Application/textures/Arena.png");
@@ -43,7 +41,8 @@ namespace Game
 			background.Quad.S 	= textureInfo.TextureSizef;
 			background.Scale 	= new Vector2(5.0f, 5.0f);
 			background.Pivot 	= new Vector2(background.Quad.S.X/2, background.Quad.S.Y/2);
-			background.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width*0.5f,Director.Instance.GL.Context.GetViewport().Height*0.5f);
+			background.Position = new Vector2((Director.Instance.GL.Context.GetViewport().Width*0.5f) + background.Quad.S.X*1.75f,
+			                                  (Director.Instance.GL.Context.GetViewport().Height*0.5f) - ((background.Quad.S.Y/2) - 55.0f));
 			AddChild(background);
 			
 			// Player
@@ -70,8 +69,7 @@ namespace Game
 			textureInfo			= new TextureInfo("/Application/textures/Black.png");
 			
 			SetUpSceneObjects(textureInfo);
-			
-			
+
 			
 			Scheduler.Instance.ScheduleUpdateForTarget(this, 1, false);
 		}
@@ -219,6 +217,8 @@ namespace Game
 			CheckArenaBoundaries(entities);
 			
 			CheckCollisions(entities);
+			
+			
 		}
 		
 		public void Input(List<Entity> entities)
@@ -229,13 +229,14 @@ namespace Game
 			if(player.IsAlive())
 			{							
 				// Movement
+				// The player sprite does not move from the middle of the screen, instead the world scene moves around the player.
 				foreach(Entity entries in entities)
 					if(!entries.Equals(player))
 						entries.Move(gamePadData.AnalogLeftX * -5.0f, gamePadData.AnalogLeftY * 5.0f);
 				
 				background.Position = new Vector2(background.Position.X - (gamePadData.AnalogLeftX * 5.0f),
 				                                  background.Position.Y - (-gamePadData.AnalogLeftY * 5.0f));
-							
+				
 				// Player Rotation
 				player.Rotate(gamePadData.AnalogRightX, gamePadData.AnalogRightY);
 				
@@ -264,29 +265,26 @@ namespace Game
 			if(radialDistance + sprite.Quad.S.Y > (235.0f * background.Scale.Y))
 			{
 				if(yDiff > 0)
-				{
-					
-					float angle = FMath.PI - FMath.Atan(xDiff/yDiff);
-					Console.WriteLine("X : " + FMath.Sin(angle) + " Y : " + FMath.Cos(angle));					
+				{					
+					float angle = FMath.PI - FMath.Atan(xDiff/yDiff);				
 					
 				 	foreach(Entity entries in entities)
 				 		if(!entries.Equals(player))
-				 			entries.Move(5.0f * FMath.Sin(angle), 5.0f * -FMath.Cos(angle));
+				 			entries.Move(10.0f * FMath.Sin(angle), 10.0f * -FMath.Cos(angle));
 				 	
-				 	background.Position = new Vector2(background.Position.X - (5.0f * -FMath.Sin(angle)),
-				                                 background.Position.Y - (5.0f * FMath.Cos(angle)));					
+				 	background.Position = new Vector2(background.Position.X - (10.0f * -FMath.Sin(angle)),
+				                                 background.Position.Y - (10.0f * FMath.Cos(angle)));					
 				}
 				else
 				{
 					float angle = FMath.Atan(xDiff/-yDiff);
-					Console.WriteLine("X : " + FMath.Sin(angle) + " Y : " + FMath.Cos(angle));	
 					
 				 	foreach(Entity entries in entities)
 				 		if(!entries.Equals(player))
-				 			entries.Move(5.0f * FMath.Sin(angle), 5.0f * -FMath.Cos(angle));
+				 			entries.Move(10.0f * FMath.Sin(angle), 10.0f * -FMath.Cos(angle));
 				 	
-				 	background.Position = new Vector2(background.Position.X - (5.0f * -FMath.Sin(angle)),
-				                                 background.Position.Y - (5.0f * FMath.Cos(angle)));	
+				 	background.Position = new Vector2(background.Position.X - (10.0f * -FMath.Sin(angle)),
+				                                 background.Position.Y - (10.0f * FMath.Cos(angle)));	
 				}
 			}		
 		}

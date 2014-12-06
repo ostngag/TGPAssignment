@@ -13,30 +13,30 @@ namespace Game
 		
 		public SoundManager()
 		{
-			////Small Explosion
-			//sound = new Sound[]
-			//{
-			//	new Sound("/Application/sounds/smallexplosion.wav"),
-			//};
-			//
-			//soundPlayer = new SoundPlayer[]
-			//{
-			//	sound[0].CreatePlayer(),
-			//};
+			//Small Explosion
+			sound = new Sound[]
+			{
+				new Sound("/Application/smallexplosion.wav"),
+			};
+			
+			soundPlayer = new SoundPlayer[]
+			{
+				sound[0].CreatePlayer(),
+			};
 			
 		}
 		
-		//public void Play(int index, float volume, bool soundLoop)
-		//{
-		//	soundPlayer[index].Play();
-		//	soundPlayer[index].Volume = volume;
-		//	soundPlayer[index].Loop = soundLoop;
-		//}
-		//
-		//public void Stop(int index)
-		//{
-		//	soundPlayer[index].Stop();
-		//}	
+		public void Play(int index, float volume, bool soundLoop)
+		{
+			soundPlayer[index].Play();
+			soundPlayer[index].Volume = volume;
+			soundPlayer[index].Loop = soundLoop;
+		}
+		
+		public void Stop(int index)
+		{
+			soundPlayer[index].Stop();
+		}	
 	}
 }
 
