@@ -74,5 +74,6 @@
     <Content Include="textures\Trans.png" />
     <Content Include="textures\SpriteLaser.png" />
     <Content Include="textures\Player.png" />
+    <Content Include="textures\Arena.png" />
   </ItemGroup>
 </Project>

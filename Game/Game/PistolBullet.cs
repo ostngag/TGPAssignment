@@ -61,10 +61,12 @@ namespace Game
 			fired = false;
 		}
 		
-		public override void SortCollision(EntityType type)
+		public override void SortCollision(Entity entity)
 		{
-			if(type == EntityType.enemy)			
-				HitEntity();						
+			EntityType type = entity.GetEntityType();
+			
+			if(type == EntityType.enemy || type == EntityType.scene)			
+				HitEntity();
 		}
 		
 		public static int GetSpeed() { return speed; }

@@ -98,8 +98,10 @@ namespace Game
 			alive = false;
 		}
 		
-		public override void SortCollision(EntityType type)
+		public override void SortCollision(Entity entity)
 		{
+			EntityType type = entity.GetEntityType();
+			
 			if(type == EntityType.enemy)			
 				Killed ();
 		}

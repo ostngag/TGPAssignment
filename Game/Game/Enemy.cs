@@ -43,8 +43,6 @@ namespace Game
 		
 		public override void Update(float dt)
 		{		
-			Console.WriteLine(dt);
-			
 			if(alive)
 			{										
 				float playerX = player.GetSprite().Position.X;
@@ -78,58 +76,31 @@ namespace Game
 		{
 			alive = false;
 			sprite.Position = new Vector2(2000, 2000);
-		}
+		}	
 		
-		public void PathFind(SpriteUV sprite1, SpriteUV sprite2)
+		public override void SortCollision(Entity entity)
 		{
-			float xDiff = sprite2.Position.X - sprite1.Position.X;
-			float yDiff = sprite2.Position.Y - sprite1.Position.Y;
-				
-			if(xDiff == 0)
-			{
-				sprite1.Position = new Vector2(sprite1.Position.X + 1.0f, sprite1.Position.Y + 1.0f);
-				sprite2.Position = new Vector2(sprite2.Position.X - 1.0f, sprite2.Position.Y - 1.0f);
-			}
-			else	
-			{
-				float angle = FMath.Atan(yDiff/xDiff);
-		
-				float pushX = FMath.Cos(angle);
-				float pushY = FMath.Sin(angle);
-				
-				Move(-pushX, -pushY);
-			}
-				//pistolBullet[bulletCount].Fired(gunPosX, gunPosY, bulletVelocityX, bulletVelocityY, sprite.Angle);								
-		}
-		
-		public override bool Collision(SpriteUV sprite1, SpriteUV sprite2) //Collision detection
-		{	
-			//If any parts of the first sprite are OUTSIDE the second sprite, then false is returned
-			if((sprite1.Position.X + sprite1.Quad.S.X) > sprite2.Position.X)
-				return false;		
+			EntityType type = entity.GetEntityType();
 			
-			if(sprite1.Position.Y < (sprite2.Position.Y + sprite2.Quad.S.Y))
-				return false;
-			
-			if(sprite1.Position.X < (sprite2.Quad.S.X + sprite2.Position.X))
-				return false;
-			
-			if((sprite1.Position.Y + sprite1.Quad.S.Y) > sprite2.Position.Y)
-				return false;
-			
-			
-			return true;
-		}
-		
-		public override void SortCollision(EntityType type)
-		{
 			if(type == EntityType.bullet)			
 				Killed ();
 						
 			if(type == EntityType.scene)
 			{
-				// Path find
+				PathFind(sprite, entity.GetSprite());
 			}
+		}		
+		
+		public void PathFind(SpriteUV enemy, SpriteUV scenery)
+		{		
+			if((enemy.Position.X + enemy.Quad.S.X) > scenery.Position.X)
+				Move(-5.0f, 0.0f);			
+			else if(enemy.Position.Y < (scenery.Position.Y + scenery.Quad.S.Y))
+					Move(0.0f, 5.0f);				
+				else if(enemy.Position.X < (scenery.Quad.S.X + scenery.Position.X))
+						Move(5.0f, 0.0f);					
+					else if((enemy.Position.Y + enemy.Quad.S.Y) > scenery.Position.Y)
+							Move(0.0f, -5.0f);	
 		}
 		
 		public override SpriteUV GetSprite(){ return sprite; }

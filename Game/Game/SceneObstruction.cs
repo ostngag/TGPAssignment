@@ -22,6 +22,8 @@ namespace Game
 			objectSprite.Quad.S 	= new Vector2(sizeX, sizeY);
 			objectSprite.Position	= new Vector2(posX, posY);
 			
+			Console.WriteLine(objectSprite.Position);
+			
 			currentScene.AddChild(objectSprite);
 		}
 		
@@ -35,9 +37,13 @@ namespace Game
 			objectSprite.Position = new Vector2(objectSprite.Position.X + x, objectSprite.Position.Y + y);
 		}
 		
-	    public override void SortCollision(EntityType type)
+		public override void SortCollision(Entity entity)
 		{
-			
+			EntityType type = entity.GetEntityType();	
+		}
+		
+		public void PushEntity()
+		{
 		}
 		
 		public override SpriteUV GetSprite(){ return objectSprite; }

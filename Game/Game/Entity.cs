@@ -53,7 +53,7 @@ namespace Game
 			return true;
 		}
 		
-		public virtual void SortCollision(EntityType type){}
+		public virtual void SortCollision(Entity entity){}
 		
 		public virtual SpriteUV GetSprite(){ return sprite; }
 		

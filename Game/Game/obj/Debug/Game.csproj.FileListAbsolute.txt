@@ -374,3 +374,5 @@ C:\Users\mizukami\Desktop\Game\Game\bin\Debug\Game-unsigned\Application\textures
 C:\Users\mizukami\Desktop\Game\Game\bin\Debug\Game-unsigned\Application\textures\Player.png
 C:\Users\mizukami\Desktop\Game\Game\bin\Debug\Game-signed\Application\textures\SpriteLaser.png
 C:\Users\mizukami\Desktop\Game\Game\bin\Debug\Game-signed\Application\textures\Player.png
+C:\Users\mizukami\Desktop\Game\Game\bin\Debug\Game-unsigned\Application\textures\Arena.png
+C:\Users\mizukami\Desktop\Game\Game\bin\Debug\Game-signed\Application\textures\Arena.png
