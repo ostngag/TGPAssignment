@@ -13,19 +13,23 @@ namespace Game
 {
 	public class GameScene : Scene
 	{
-		//Private Variables
+		// Private		
+		// All entities within the GameScene
 		private Player 				player;
 		private Enemy[] 			enemy;
+		private SceneObstruction[] 	sceneObject;
 		
-		private TextureInfo 		textureInfo;
+		// Two TextureInfo variables so that more than one variable can be passed into entities
+		private TextureInfo 		textureInfo1;
+		private TextureInfo 		textureInfo2;
 		private SpriteUV 			background;
+		private Collision 			collChecker;	
 		
-		private SceneObstruction[] 	sceneObject;		
-		private Collision 			collChecker;		
+		// Allow for continous firing
 		private bool 				attacking = false;
 		
-		//enum EntityType{bullet, enemy, player, scene};
 		
+		// Public
 		public GameScene()
 		{
 			this.Camera.SetViewFromViewport();			
@@ -35,40 +39,43 @@ namespace Game
 			// Setup all entities and sprites    (0.0f * (background.Scale.X - 1.0f)
 			
 			// Background
-			textureInfo 		= new TextureInfo("/Application/textures/Arena.png");
+			textureInfo1 		= new TextureInfo("/Application/textures/Arena.png");
 			background 			= new SpriteUV();
-			background 			= new SpriteUV(textureInfo);
-			background.Quad.S 	= textureInfo.TextureSizef;
+			background 			= new SpriteUV(textureInfo1);
+			background.Quad.S 	= textureInfo1.TextureSizef;
 			background.Scale 	= new Vector2(5.0f, 5.0f);
 			background.Pivot 	= new Vector2(background.Quad.S.X/2, background.Quad.S.Y/2);
 			background.Position = new Vector2((Director.Instance.GL.Context.GetViewport().Width*0.5f) + background.Quad.S.X*1.75f,
 			                                  (Director.Instance.GL.Context.GetViewport().Height*0.5f) - ((background.Quad.S.Y/2) - 55.0f));
 			AddChild(background);
 			
+			
 			// Player
-			textureInfo 		= new TextureInfo("/Application/textures/Player.png");
-			player 				= new Player(this, textureInfo);
+			textureInfo1 		= new TextureInfo("/Application/textures/Player.png");
+			textureInfo2 		= new TextureInfo("/Application/textures/Black.png");
+			player 				= new Player(this, textureInfo1, textureInfo2);			
 			
 			// Enemies
-			textureInfo 		= new TextureInfo("/Application/textures/Bullet.png");
-			enemy 				= new Enemy[20];
-			Random dX = new Random();
-			Random dY = new Random();
-			float x = 0;
-			float y = 0;
+			textureInfo1 		= new TextureInfo("/Application/textures/Bullet.png");
+			enemy 				= new Enemy[20];			
+			// These Random variables are used to spawn the enemies at different positions
+			Random dX 			= new Random();
+			Random dY 			= new Random();
+			float x 			= 0;
+			float y 			= 0;
 			
 			for(int i = 0; i < 20; i++)
 			{
-				x = (float)(12000 * dX.NextDouble());
-				y = (float)(12000 * dY.NextDouble());
+				x 				= (float)(1200 * dX.NextDouble());
+				y 				= (float)(1200 * dY.NextDouble());
 				
-				enemy[i] = new Enemy(this, player, x, y, textureInfo);
+				enemy[i] 		= new Enemy(this, player, x, y, textureInfo1);
 			}	
 			
-			// All scene objects
-			textureInfo			= new TextureInfo("/Application/textures/Black.png");
 			
-			SetUpSceneObjects(textureInfo);
+			// All scene objects
+			textureInfo1			= new TextureInfo("/Application/textures/Black.png");
+			SetUpSceneObjects(textureInfo1);
 
 			
 			Scheduler.Instance.ScheduleUpdateForTarget(this, 1, false);
@@ -77,62 +84,63 @@ namespace Game
 		public void Dispose()
 		{
 			// Cleanup
-			textureInfo.Dispose();
+			textureInfo1.Dispose();
+			textureInfo2.Dispose();
 		}
 		
 		public void SetUpSceneObjects(TextureInfo textureInfo)
 		{
-			sceneObject 		= new SceneObstruction[20];
+			sceneObject 	= new SceneObstruction[20];
 			
 			// Small Blocks
-			sceneObject[0] = new SceneObstruction(this, textureInfo,
-                                      			  (background.Position.X + ((background.Quad.S.X/2) - (49 * background.Scale.X))),
-			                                      (background.Position.Y + ((background.Quad.S.Y/2) + (183 * background.Scale.Y)) - background.Scale.Y * 12),
-                                      			  background.Scale.X * 12, background.Scale.Y * 12);
-			
-			sceneObject[1] = new SceneObstruction(this, textureInfo,	   
-                                      			  (background.Position.X + ((background.Quad.S.X/2) - (-33 * background.Scale.X))),
-			                                      (background.Position.Y + ((background.Quad.S.Y/2) + (183 * background.Scale.Y)) - background.Scale.Y * 12),
-                                      			  background.Scale.X * 12, background.Scale.Y * 12);
-			
-			sceneObject[2] = new SceneObstruction(this, textureInfo,	   
-                                      			  (background.Position.X + ((background.Quad.S.X/2) - (-138 * background.Scale.X))),
-			                                      (background.Position.Y + ((background.Quad.S.Y/2) + (47 * background.Scale.Y)) - background.Scale.Y * 12),
-                                      			  background.Scale.X * 12, background.Scale.Y * 12);
-																		   
-		    sceneObject[3] = new SceneObstruction(this, textureInfo,	   
-                                      			  (background.Position.X + ((background.Quad.S.X/2) - (-138 * background.Scale.X))),
-			                                      (background.Position.Y + ((background.Quad.S.Y/2) + (-35 * background.Scale.Y)) - background.Scale.Y * 12),
-                                      			  background.Scale.X * 12, background.Scale.Y * 12);
-			
-			sceneObject[4] = new SceneObstruction(this, textureInfo,	   
-                                      			  (background.Position.X + ((background.Quad.S.X/2) - (-33 * background.Scale.X))),
-			                                      (background.Position.Y + ((background.Quad.S.Y/2) + (-171 * background.Scale.Y)) - background.Scale.Y * 12),
-                                      			  background.Scale.X * 12, background.Scale.Y * 12);
-			
-			sceneObject[5] = new SceneObstruction(this, textureInfo,	   
-                                      			  (background.Position.X + ((background.Quad.S.X/2) - (49 * background.Scale.X))),
-			                                      (background.Position.Y + ((background.Quad.S.Y/2) + (-171 * background.Scale.Y)) - background.Scale.Y * 12),
-                                      			  background.Scale.X * 12, background.Scale.Y * 12);
-																		   
-		    sceneObject[6] = new SceneObstruction(this, textureInfo,	   
-                                      			  (background.Position.X + ((background.Quad.S.X/2) - (171 * background.Scale.X))),
-			                                      (background.Position.Y + ((background.Quad.S.Y/2) + (-35 * background.Scale.Y)) - background.Scale.Y * 12),
-                                      			  background.Scale.X * 12, background.Scale.Y * 12);
-			
-			sceneObject[7] = new SceneObstruction(this, textureInfo,	   
-                                      			  (background.Position.X + ((background.Quad.S.X/2) - (171 * background.Scale.X))),
-			                                      (background.Position.Y + ((background.Quad.S.Y/2) + (47 * background.Scale.Y)) - background.Scale.Y * 12),
-                                      			  background.Scale.X * 12, background.Scale.Y * 12);
-			
-			
-			// Boxes
-			sceneObject[8] = new SceneObstruction(this, textureInfo,	   
-                                      			  (background.Position.X + ((background.Quad.S.X/2) - (43 * background.Scale.X))),
-			                                      (background.Position.Y + ((background.Quad.S.Y/2) + (43 * background.Scale.Y)) - background.Scale.Y * 21),
-                                      			  background.Scale.X * 21, background.Scale.Y * 21);
-																		   
-			sceneObject[9] = new SceneObstruction(this, textureInfo,	   
+			sceneObject[0]  = new SceneObstruction(this, textureInfo,
+                                       			  (background.Position.X + ((background.Quad.S.X/2) - (49 * background.Scale.X))),
+			                                       (background.Position.Y + ((background.Quad.S.Y/2) + (183 * background.Scale.Y)) - background.Scale.Y * 12),
+                                       			  background.Scale.X * 12, background.Scale.Y * 12);
+						    
+			sceneObject[1]  = new SceneObstruction(this, textureInfo,	   
+                                       			  (background.Position.X + ((background.Quad.S.X/2) - (-33 * background.Scale.X))),
+			                                       (background.Position.Y + ((background.Quad.S.Y/2) + (183 * background.Scale.Y)) - background.Scale.Y * 12),
+                                       			  background.Scale.X * 12, background.Scale.Y * 12);
+						    
+			sceneObject[2]  = new SceneObstruction(this, textureInfo,	   
+                                       			  (background.Position.X + ((background.Quad.S.X/2) - (-138 * background.Scale.X))),
+			                                       (background.Position.Y + ((background.Quad.S.Y/2) + (47 * background.Scale.Y)) - background.Scale.Y * 12),
+                                       			  background.Scale.X * 12, background.Scale.Y * 12);
+						 												   
+		    sceneObject[3]  = new SceneObstruction(this, textureInfo,	   
+                                       			  (background.Position.X + ((background.Quad.S.X/2) - (-138 * background.Scale.X))),
+			                                       (background.Position.Y + ((background.Quad.S.Y/2) + (-35 * background.Scale.Y)) - background.Scale.Y * 12),
+                                       			  background.Scale.X * 12, background.Scale.Y * 12);
+						    
+			sceneObject[4]  = new SceneObstruction(this, textureInfo,	   
+                                       			  (background.Position.X + ((background.Quad.S.X/2) - (-33 * background.Scale.X))),
+			                                       (background.Position.Y + ((background.Quad.S.Y/2) + (-171 * background.Scale.Y)) - background.Scale.Y * 12),
+                                       			  background.Scale.X * 12, background.Scale.Y * 12);
+						    
+			sceneObject[5]  = new SceneObstruction(this, textureInfo,	   
+                                       			  (background.Position.X + ((background.Quad.S.X/2) - (49 * background.Scale.X))),
+			                                       (background.Position.Y + ((background.Quad.S.Y/2) + (-171 * background.Scale.Y)) - background.Scale.Y * 12),
+                                       			  background.Scale.X * 12, background.Scale.Y * 12);
+						 												   
+		    sceneObject[6]  = new SceneObstruction(this, textureInfo,	   
+                                       			  (background.Position.X + ((background.Quad.S.X/2) - (171 * background.Scale.X))),
+			                                       (background.Position.Y + ((background.Quad.S.Y/2) + (-35 * background.Scale.Y)) - background.Scale.Y * 12),
+                                       			  background.Scale.X * 12, background.Scale.Y * 12);
+						    
+			sceneObject[7]  = new SceneObstruction(this, textureInfo,	   
+                                       			  (background.Position.X + ((background.Quad.S.X/2) - (171 * background.Scale.X))),
+			                                       (background.Position.Y + ((background.Quad.S.Y/2) + (47 * background.Scale.Y)) - background.Scale.Y * 12),
+                                       			  background.Scale.X * 12, background.Scale.Y * 12);
+						    
+						    
+			// Boxes	    
+			sceneObject[8]  = new SceneObstruction(this, textureInfo,	   
+                                       			  (background.Position.X + ((background.Quad.S.X/2) - (43 * background.Scale.X))),
+			                                       (background.Position.Y + ((background.Quad.S.Y/2) + (43 * background.Scale.Y)) - background.Scale.Y * 21),
+                                       			  background.Scale.X * 21, background.Scale.Y * 21);
+						 												   
+			sceneObject[9]  = new SceneObstruction(this, textureInfo,	   
                                       			  (background.Position.X + ((background.Quad.S.X/2) - (-19 * background.Scale.X))),
 			                                      (background.Position.Y + ((background.Quad.S.Y/2) + (43 * background.Scale.Y)) - background.Scale.Y * 21),
                                       			  background.Scale.X * 21, background.Scale.Y * 21);
@@ -212,16 +220,16 @@ namespace Game
 			foreach(Entity entries in entities)
 				entries.Update(dt);
 			
-			Input (entities);
+			CheckInput (entities);
 			
 			CheckArenaBoundaries(entities);
 			
-			CheckCollisions(entities);
+			CheckCollisions(entities);	
 			
-			
+			CheckPlayerPosition(entities);
 		}
 		
-		public void Input(List<Entity> entities)
+		public void CheckInput(List<Entity> entities)
 		{
 			// Query gamepad for current state
 			var gamePadData = GamePad.GetData(0);
@@ -230,6 +238,7 @@ namespace Game
 			{							
 				// Movement
 				// The player sprite does not move from the middle of the screen, instead the world scene moves around the player.
+				
 				foreach(Entity entries in entities)
 					if(!entries.Equals(player))
 						entries.Move(gamePadData.AnalogLeftX * -5.0f, gamePadData.AnalogLeftY * 5.0f);
@@ -298,6 +307,55 @@ namespace Game
 						currentEntries.SortCollision(otherEntries);
 						otherEntries.SortCollision(currentEntries);
 					}
+		}
+		
+		public void CheckPlayerPosition(List<Entity> entities)
+		{
+			float x = player.GetSprite().Position.X;
+			float y = player.GetSprite().Position.Y;
+			
+			if(x != Director.Instance.GL.Context.GetViewport().Width*0.5f)
+			{
+				if(x > (Director.Instance.GL.Context.GetViewport().Width*0.5f) + 5.0f)
+				{
+					foreach(Entity entries in entities)
+							entries.Move(-5.0f, 0.0f);
+					
+					background.Position = new Vector2(background.Position.X - 5.0f,				                                  
+					                                  background.Position.Y);
+				}
+				
+				if(x < (Director.Instance.GL.Context.GetViewport().Width*0.5f) - 5.0f)
+				{
+					foreach(Entity entries in entities)
+							entries.Move(5.0f, 0.0f);
+					
+					background.Position = new Vector2(background.Position.X + 5.0f,				                                  
+					                                  background.Position.Y);
+				}
+			}
+			
+			if(y != Director.Instance.GL.Context.GetViewport().Height*0.5f)
+			{
+				if(y > (Director.Instance.GL.Context.GetViewport().Height*0.5f) + 5.0f)
+				{
+					foreach(Entity entries in entities)
+							entries.Move(0.0f, -5.0f);
+					
+					background.Position = new Vector2(background.Position.X,				                                  
+					                                  background.Position.Y - 5.0f);
+				}
+				
+				if(y < (Director.Instance.GL.Context.GetViewport().Height*0.5f) - 5.0f)
+				{
+					foreach(Entity entries in entities)
+							entries.Move(0.0f, 5.0f);
+					
+					background.Position = new Vector2(background.Position.X,				                                  
+					                                  background.Position.Y + 5.0f);
+				}
+			}
+
 		}
 	}
 }

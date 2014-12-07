@@ -8,6 +8,7 @@ using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 
 namespace Game
 {
+	// Encapsulate collision code into a class
 	public class Collision
 	{
 		public Collision (){}

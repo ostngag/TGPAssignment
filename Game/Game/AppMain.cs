@@ -13,19 +13,21 @@ namespace Game
 {
 	public class AppMain
 	{
-		//Private Variables
+		// Private Variables
 		
-		//Game Entities
+		// Game Entities
 		private static GameScene currentScene;
 		
 		public static void Main (string[] args)
 		{
 			Initialize ();
 			
-			//Game loop
+			// Game loop
 			while (true) 
 			{
+				// Check for player input
 				SystemEvents.CheckEvents ();
+				
 				Update ();
 				
 				Director.Instance.Update();
@@ -38,22 +40,15 @@ namespace Game
 
 		public static void Initialize ()
 		{
-			//Set up director + UISystem.
+			// Set up director + UISystem.
 			Director.Initialize ();			
-			//Run the scene.
+			// Run the scene.
 			currentScene = new GameScene();
 			Director.Instance.RunWithScene(currentScene, true);			
 		}
 
 		public static void Update ()
 		{
-
-			// if(Input2.GamePad0.Cross.Down)
-			// 	player.Rotate(FMath.PI);	
-			// 
-			// 
-			// if(Input2.GamePad0.Start.Down)
-			// 	player.Attack();
 		}
 	}
 }

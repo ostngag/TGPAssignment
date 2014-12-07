@@ -28,9 +28,9 @@ namespace Game
 			
 			
 			// Pistol bullet
-			pistolBullet 			= new PistolBullet[20];
+			pistolBullet 			= new PistolBullet[30];
 			
-			for(int i = 0; i < 20; i++)
+			for(int i = 0; i < 30; i++)
 			{
 				pistolBullet[i] = new PistolBullet(pistolSprite, currentScene);
 			}	
@@ -38,7 +38,7 @@ namespace Game
 		
 		public void Update(float dt)
 		{			
-			for(int i = 0; i < 20; i++)			
+			for(int i = 0; i < 30; i++)			
 				pistolBullet[i].Update(dt);				
 			
 			PistolBullet.bulletInterval++;
@@ -70,7 +70,7 @@ namespace Game
 		{			
 			if(PistolBullet.bulletInterval > PistolBullet.GetSpeed())
 			{
-				if(bulletCount >= 20)
+				if(bulletCount >= 30)
 				bulletCount = 0;
 			
 				float x = sprite.Position.X + (sprite.Quad.S.X/2);

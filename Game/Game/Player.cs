@@ -11,52 +11,50 @@ namespace Game
 {
 	public class Player : Entity
 	{
-		//Private Variables
-		
-		//Sprite
+		// Private
+		// Sprite
 		private static SpriteUV 	charSprite;
+		// Since the main sprite rotates, a collision box is needed for accurate calculations
+		private static SpriteUV		collisionBox;
 		private static EntityType 	type = EntityType.player;
-		
-		//Character
-		public Weapon weapon;
-		
-		public float lastMoveX = 0;
-		public float lastMoveY = 0;
-		
-		private static bool collided = false;
+
 		private static bool alive = true;
 		
-		public Player (GameScene currentScene, TextureInfo textureInfo)
+		// Public
+		public Weapon weapon;
+
+		public Player (GameScene currentScene, TextureInfo textureInfo1, TextureInfo textureInfo2)
 		{			
-			//Sprite
-			charSprite	 		= new SpriteUV();
-			charSprite 			= new SpriteUV(textureInfo);	
-			charSprite.Quad.S 	= textureInfo.TextureSizef;
-			charSprite.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width*0.5f,Director.Instance.GL.Context.GetViewport().Height*0.5f);
-			charSprite.Pivot 	= new Vector2(charSprite.Quad.S.X/2, charSprite.Quad.S.Y/2);
-			charSprite.Angle	= -FMath.PI/2.0f;		
+			// Sprite
+			charSprite	 			= new SpriteUV();
+			charSprite 				= new SpriteUV(textureInfo1);	
+			charSprite.Quad.S 		= textureInfo1.TextureSizef;
+			charSprite.Position 	= new Vector2(Director.Instance.GL.Context.GetViewport().Width*0.5f,Director.Instance.GL.Context.GetViewport().Height*0.5f);
+			charSprite.Pivot 		= new Vector2(charSprite.Quad.S.X/2, charSprite.Quad.S.Y/2);
+			charSprite.Angle		= -FMath.PI/2.0f;		
+						
+			collisionBox	 		= new SpriteUV();
+			collisionBox 			= new SpriteUV(textureInfo2);	
+			collisionBox.Quad.S 	= new Vector2(50.0f, 50.0f);
+			collisionBox.Position 	= new Vector2((Director.Instance.GL.Context.GetViewport().Width*0.5f) - charSprite.Pivot.X,
+			                                     (Director.Instance.GL.Context.GetViewport().Height*0.5f) - charSprite.Pivot.Y);		
 			
-			weapon = new Weapon(currentScene);
+			weapon					 = new Weapon(currentScene);
 			
-			currentScene.AddChild(charSprite);			
+			currentScene.AddChild(charSprite);
+			currentScene.AddChild(collisionBox);
 		}
 		
 		public override void Update(float dt)
 		{			
-			//Health
-			//Momentum
 			weapon.Update(dt);
+			Console.WriteLine("X: " + charSprite.Position.X + " Y: " + charSprite.Position.Y);
 		}
 		
 		public override void Move(float x, float y)
 		{
 			charSprite.Position = new Vector2(charSprite.Position.X + x, charSprite.Position.Y + y);
-			
-			if(!collided)
-			{
-				lastMoveX = x;
-				lastMoveY = y;
-			}	
+			collisionBox.Position = charSprite.Position;
 		}
 		
 		public override void Rotate(float x, float y)
@@ -116,22 +114,27 @@ namespace Game
 				Killed ();
 			
 			if(type == EntityType.scene)			
-				PathFind(charSprite, entity.GetSprite());		
+				PathFind(collisionBox, entity.GetSprite());		
 		}			
 		
 		public void PathFind(SpriteUV playerSprite, SpriteUV scenery)
-		{		
-			if((playerSprite.Position.X + playerSprite.Quad.S.X) > scenery.Position.X)
-				Move(-5.0f, 0.0f);			
-			else if(playerSprite.Position.Y < (scenery.Position.Y + scenery.Quad.S.Y))
-					Move(0.0f, 5.0f);				
-				else if(playerSprite.Position.X < (scenery.Quad.S.X + scenery.Position.X))
-						Move(5.0f, 0.0f);					
-					else if((playerSprite.Position.Y + playerSprite.Quad.S.Y) > scenery.Position.Y)
-							Move(0.0f, -5.0f);	
-		}
+		{			
+			float xDiff = (playerSprite.Position.X + (playerSprite.Quad.S.X/2)) - (scenery.Position.X + (scenery.Quad.S.X/2));			
+			float yDiff = (playerSprite.Position.Y + (playerSprite.Quad.S.Y/2)) - (scenery.Position.Y + (scenery.Quad.S.Y/2));
 		
-		public override SpriteUV GetSprite (){ return charSprite; }
+			if(yDiff > 0)
+			{					
+				float angle = FMath.PI - FMath.Atan(xDiff/yDiff);				
+			 	Move(10.0f * FMath.Sin(angle), 10.0f * -FMath.Cos(angle));			
+			}
+			else
+			{
+				float angle = FMath.Atan(xDiff/-yDiff);				
+			 	Move(10.0f * FMath.Sin(angle), 10.0f * -FMath.Cos(angle));	
+			}		
+		}
+				
+		public override SpriteUV GetSprite (){ return collisionBox; }
 		
 		public override EntityType GetEntityType(){ return type; }
 		

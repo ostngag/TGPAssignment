@@ -32,13 +32,8 @@ namespace Game
 		public override void Update(float dt)
 		{
 			if(fired)
-				if(sprite.Position.X < 900 && sprite.Position.X >= 0 && sprite.Position.Y < 600 && sprite.Position.Y >= 0)
-					sprite.Position = new Vector2(sprite.Position.X + bulletVelocityX, sprite.Position.Y + bulletVelocityY);
-				else
-				{
-					sprite.Position = new Vector2(-10000, 10000);
-					fired = false;
-				}				
+				sprite.Position = new Vector2(sprite.Position.X + bulletVelocityX, sprite.Position.Y + bulletVelocityY);
+			
 		}
 		
 		public override void Move(float x, float y)

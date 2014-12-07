@@ -46,17 +46,7 @@ namespace Game
 		{		
 			if(alive)
 			{										
-				float playerX = player.GetSprite().Position.X;
-				float playerY = player.GetSprite().Position.Y;			
-				float directionX = playerX - sprite.Position.X;
-				float directionY = playerY - sprite.Position.Y;
-				
-				// If the enemy has collided with the scenery, then path around said object.
-				//if(collidedWithScene)
-					//PathFind();
-				
-				Move(directionX/100, directionY/100);
-				Rotate(directionX, directionY);								
+				TrackPlayer();		
 			}						
 		}
 		
@@ -73,6 +63,27 @@ namespace Game
 				sprite.Angle = FMath.Atan(y/x) - (FMath.PI/2);
 		}		
 		
+		public void TrackPlayer()
+		{
+			float xDiff = (sprite.Position.X + (sprite.Quad.S.X/2)) - (player.GetSprite().Position.X + (player.GetSprite().Quad.S.X/2));			
+			float yDiff = (sprite.Position.Y + (sprite.Quad.S.Y/2)) - (player.GetSprite().Position.Y + (player.GetSprite().Quad.S.Y/2));
+		
+			if(!(xDiff == 0 || yDiff == 0))
+			{
+				if(yDiff > 0)
+				{					
+					float angle = FMath.PI - FMath.Atan(xDiff/yDiff);				
+				 	Move(-3.0f * FMath.Sin(angle), -3.0f * -FMath.Cos(angle));			
+				}
+				else
+				{
+					float angle = FMath.Atan(xDiff/-yDiff);				
+				 	Move(-3.0f * FMath.Sin(angle), -3.0f * -FMath.Cos(angle));	
+				}	
+				Rotate(-xDiff, -yDiff);			
+			}		
+		}
+		
 		public void Killed()
 		{
 			alive = false;
@@ -82,27 +93,40 @@ namespace Game
 		
 		public override void SortCollision(Entity entity)
 		{
-			EntityType type = entity.GetEntityType();
-			
-			if(type == EntityType.bullet)			
-				Killed ();
-						
-			if(type == EntityType.scene)
+			// This is so that the enemy instance doesn't collide with itself, as collision compares the list of entities with itself
+			if(entity != this)
 			{
-				PathFind(sprite, entity.GetSprite());
+				EntityType type = entity.GetEntityType();
+				
+				if(type == EntityType.bullet)			
+					Killed ();
+							
+				if(type == EntityType.enemy || type == EntityType.scene)				
+					PathFind(sprite, entity.GetSprite());							
 			}
 		}		
 		
-		public void PathFind(SpriteUV enemy, SpriteUV scenery)
+		public void PathFind(SpriteUV enemy, SpriteUV sprite2)
 		{		
-			if((enemy.Position.X + enemy.Quad.S.X) > scenery.Position.X)
-				Move(-5.0f, 0.0f);			
-			else if(enemy.Position.Y < (scenery.Position.Y + scenery.Quad.S.Y))
-					Move(0.0f, 5.0f);				
-				else if(enemy.Position.X < (scenery.Quad.S.X + scenery.Position.X))
-						Move(5.0f, 0.0f);					
-					else if((enemy.Position.Y + enemy.Quad.S.Y) > scenery.Position.Y)
-							Move(0.0f, -5.0f);	
+			float xDiff = (enemy.Position.X + (enemy.Quad.S.X/2)) - (sprite2.Position.X + (sprite2.Quad.S.X/2));			
+			float yDiff = (enemy.Position.Y + (enemy.Quad.S.Y/2)) - (sprite2.Position.Y + (sprite2.Quad.S.Y/2));
+		
+			if(xDiff == 0 || yDiff == 0)
+			{
+				xDiff = 1.0f;
+				yDiff = 1.0f;
+			}
+		
+			if(yDiff > 0)
+			{					
+				float angle = FMath.PI - FMath.Atan(xDiff/yDiff);				
+			 	Move(10.0f * FMath.Sin(angle), 10.0f * -FMath.Cos(angle));			
+			}
+			else
+			{
+				float angle = FMath.Atan(xDiff/-yDiff);				
+			 	Move(10.0f * FMath.Sin(angle), 10.0f * -FMath.Cos(angle));	
+			}	
 		}
 		
 		public override SpriteUV GetSprite(){ return sprite; }
