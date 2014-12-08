@@ -16,8 +16,9 @@ namespace Game
 		// Private		
 		// All entities within the GameScene
 		private Player 				player;
-		private Enemy[] 			enemy;
 		private SceneObstruction[] 	sceneObject;
+		
+		private EnemySpawner[] enemySpawner;
 		
 		// Two TextureInfo variables so that more than one variable can be passed into entities
 		private TextureInfo 		textureInfo1;
@@ -26,8 +27,7 @@ namespace Game
 		private Collision 			collChecker;	
 		
 		// Allow for continous firing
-		private bool 				attacking = false;
-		
+		private bool 				attacking = false;		
 		
 		// Public
 		public GameScene()
@@ -52,29 +52,40 @@ namespace Game
 			
 			// Player
 			textureInfo1 		= new TextureInfo("/Application/textures/Player.png");
-			textureInfo2 		= new TextureInfo("/Application/textures/Black.png");
+			textureInfo2 		= new TextureInfo("/Application/textures/Trans.png");
 			player 				= new Player(this, textureInfo1, textureInfo2);			
 			
-			// Enemies
-			textureInfo1 		= new TextureInfo("/Application/textures/Bullet.png");
-			enemy 				= new Enemy[20];			
-			// These Random variables are used to spawn the enemies at different positions
-			Random dX 			= new Random();
-			Random dY 			= new Random();
-			float x 			= 0;
-			float y 			= 0;
+			// Enemy Textures
+			textureInfo1 		= new TextureInfo("/Application/textures/Ehnehmii.png");
 			
-			for(int i = 0; i < 20; i++)
-			{
-				x 				= (float)(1200 * dX.NextDouble());
-				y 				= (float)(1200 * dY.NextDouble());
-				
-				enemy[i] 		= new Enemy(this, player, x, y, textureInfo1);
-			}	
+			// FOR DEBUGGING LOCATION OF SPAWNERS
+			//textureInfo2		= new TextureInfo("/Application/textures/Black.png");
 			
-			
+			// Enemy Spawners
+			enemySpawner = new EnemySpawner[4];	
+			// Left Side of Arena
+			enemySpawner[0] = new EnemySpawner(this, player, textureInfo1,
+			                                   (background.Position.X-((background.Quad.S.X*background.Scale.X)/2)) + 250.0f,
+			                                   ((background.Quad.S.Y/2) + background.Position.Y) - 50.0f,
+			                                   -200.0f, 0.0f); 
+			// Right Side of Arena
+			enemySpawner[1] = new EnemySpawner(this, player, textureInfo1,
+			                                   (background.Position.X+((background.Quad.S.X*background.Scale.X)/2)) + 125.0f,
+			                                   (background.Quad.S.Y/2) + background.Position.Y,
+			                                   1000.0f, 0.0f); 
+			// Top of Arena
+			enemySpawner[2] = new EnemySpawner(this, player, textureInfo1,
+			                                   background.Position.X + 200.0f, 
+			                                   ((background.Quad.S.Y*background.Scale.Y)/2.0f) + 200.0f,
+			                                   0.0f, 700.0f); 
+			// Bottom of Arena
+			enemySpawner[3] = new EnemySpawner(this, player, textureInfo1,
+			                                   background.Position.X + 200.0f, 
+			                                   ((-background.Quad.S.Y*background.Scale.Y)/2.0f) + 350.0f,
+			                                   0.0f, -250.0f); 
+								
 			// All scene objects
-			textureInfo1			= new TextureInfo("/Application/textures/Black.png");
+			textureInfo1	= new TextureInfo("/Application/textures/Trans.png");
 			SetUpSceneObjects(textureInfo1);
 
 			
@@ -206,8 +217,9 @@ namespace Game
 			
 			entities.Add(player);
 			
-			for(int i = 0; i < 20; i++)			
-				entities.Add(enemy[i]);
+			for(int i = 0; i < 4; i++)
+				for(int j = 0; j < enemySpawner[i].GetNoOfEnemies(); j++)			
+					entities.Add(enemySpawner[i].GetEnemy(j));
 			
 			for(int i = 0; i < 20; i++)			
 				entities.Add(sceneObject[i]);
@@ -217,8 +229,11 @@ namespace Game
 				
 			
 			// Update all entities
+			for(int i = 0; i < 4; i++)
+				enemySpawner[i].Update(dt);
+			
 			foreach(Entity entries in entities)
-				entries.Update(dt);
+				entries.Update(dt);			
 			
 			CheckInput (entities);
 			
@@ -237,14 +252,15 @@ namespace Game
 			if(player.IsAlive())
 			{							
 				// Movement
-				// The player sprite does not move from the middle of the screen, instead the world scene moves around the player.
-				
+				// The player sprite does not move from the middle of the screen, instead the world scene moves around the player.				
 				foreach(Entity entries in entities)
 					if(!entries.Equals(player))
 						entries.Move(gamePadData.AnalogLeftX * -5.0f, gamePadData.AnalogLeftY * 5.0f);
 				
 				background.Position = new Vector2(background.Position.X - (gamePadData.AnalogLeftX * 5.0f),
 				                                  background.Position.Y - (-gamePadData.AnalogLeftY * 5.0f));
+				for(int i = 0; i < 4; i++)
+					enemySpawner[i].AddToPosition((gamePadData.AnalogLeftX * -5.0f), (gamePadData.AnalogLeftY * 5.0f));
 				
 				// Player Rotation
 				player.Rotate(gamePadData.AnalogRightX, gamePadData.AnalogRightY);
@@ -282,7 +298,10 @@ namespace Game
 				 			entries.Move(10.0f * FMath.Sin(angle), 10.0f * -FMath.Cos(angle));
 				 	
 				 	background.Position = new Vector2(background.Position.X - (10.0f * -FMath.Sin(angle)),
-				                                 background.Position.Y - (10.0f * FMath.Cos(angle)));					
+				                                 background.Position.Y - (10.0f * FMath.Cos(angle)));	
+					
+					for(int i = 0; i < 4; i++)
+						enemySpawner[i].AddToPosition((10.0f * FMath.Sin(angle)), (10.0f * -FMath.Cos(angle)));
 				}
 				else
 				{
@@ -294,6 +313,9 @@ namespace Game
 				 	
 				 	background.Position = new Vector2(background.Position.X - (10.0f * -FMath.Sin(angle)),
 				                                 background.Position.Y - (10.0f * FMath.Cos(angle)));	
+					
+					for(int i = 0; i < 4; i++)
+						enemySpawner[i].AddToPosition((10.0f * FMath.Sin(angle)), (10.0f * -FMath.Cos(angle)));
 				}
 			}		
 		}
@@ -323,6 +345,9 @@ namespace Game
 					
 					background.Position = new Vector2(background.Position.X - 5.0f,				                                  
 					                                  background.Position.Y);
+					
+					for(int i = 0; i < 4; i++)
+						enemySpawner[i].AddToPosition(-5.0f, 0.0f);
 				}
 				
 				if(x < (Director.Instance.GL.Context.GetViewport().Width*0.5f) - 5.0f)
@@ -332,6 +357,9 @@ namespace Game
 					
 					background.Position = new Vector2(background.Position.X + 5.0f,				                                  
 					                                  background.Position.Y);
+					
+					for(int i = 0; i < 4; i++)
+						enemySpawner[i].AddToPosition(5.0f, 0.0f);
 				}
 			}
 			
@@ -344,6 +372,9 @@ namespace Game
 					
 					background.Position = new Vector2(background.Position.X,				                                  
 					                                  background.Position.Y - 5.0f);
+					
+					for(int i = 0; i < 4; i++)
+						enemySpawner[i].AddToPosition(0.0f, -5.0f);
 				}
 				
 				if(y < (Director.Instance.GL.Context.GetViewport().Height*0.5f) - 5.0f)
@@ -353,6 +384,9 @@ namespace Game
 					
 					background.Position = new Vector2(background.Position.X,				                                  
 					                                  background.Position.Y + 5.0f);
+					
+					for(int i = 0; i < 4; i++)
+						enemySpawner[i].AddToPosition(0.0f, 5.0f);
 				}
 			}
 

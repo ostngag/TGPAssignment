@@ -42,7 +42,6 @@ namespace Game
 				pistolBullet[i].Update(dt);				
 			
 			PistolBullet.bulletInterval++;
-			//Console.WriteLine("X: " + currentBullet.Position.X + " Y: " + currentBullet.Position.Y);
 		}
 		
 		public void ChooseWeapon(int weaponNo)

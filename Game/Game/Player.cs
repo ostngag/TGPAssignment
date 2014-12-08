@@ -40,7 +40,7 @@ namespace Game
 			                                     (Director.Instance.GL.Context.GetViewport().Height*0.5f) - charSprite.Pivot.Y);		
 			
 			weapon					 = new Weapon(currentScene);
-			
+	
 			currentScene.AddChild(charSprite);
 			currentScene.AddChild(collisionBox);
 		}
@@ -48,7 +48,6 @@ namespace Game
 		public override void Update(float dt)
 		{			
 			weapon.Update(dt);
-			Console.WriteLine("X: " + charSprite.Position.X + " Y: " + charSprite.Position.Y);
 		}
 		
 		public override void Move(float x, float y)

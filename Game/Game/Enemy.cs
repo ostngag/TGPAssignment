@@ -18,9 +18,8 @@ namespace Game
 		public SpriteUV 	sprite;
 		private static EntityType 	type = EntityType.enemy;
 		
-		private bool alive = true;
+		private bool alive = false;
 		
-		private bool collidedWithScene;
 		private static SoundManager sounds;	
 		
 		//Player to chase
@@ -34,7 +33,8 @@ namespace Game
 			sprite.Quad.S 	= textureInfo.TextureSizef;
 			sprite.Position = new Vector2(posX, posY);
 			sprite.Pivot 	= new Vector2(sprite.Quad.S.X/2, sprite.Quad.S.Y/2);
-			sprite.Angle	= 0.0f;		
+			sprite.Angle	= 0.0f;
+			sprite.Scale    = new Vector2(2.0f, 2.0f);
 					
 			this.player = player;
 			sounds = new SoundManager();
@@ -88,7 +88,7 @@ namespace Game
 		{
 			alive = false;
 			sounds.Play(0, 1.0f, false);
-			sprite.Position = new Vector2(2000, 2000);
+			sprite.Position = new Vector2(10000, 10000);
 		}	
 		
 		public override void SortCollision(Entity entity)
@@ -132,6 +132,10 @@ namespace Game
 		public override SpriteUV GetSprite(){ return sprite; }
 		
 		public override EntityType GetEntityType(){ return type; }
+		
+		public bool IsAlive(){ return alive; }
+		
+		public void SetLife(bool setLife){ alive = setLife; }
 
 	}
 }

@@ -24,7 +24,7 @@ namespace Game
 			sprite	 		= new SpriteUV();
 			sprite 			= new SpriteUV(t);	
 			sprite.Quad.S 	= t.TextureSizef;
-			sprite.Position = new Vector2(-10000, 10000);
+			sprite.Position = new Vector2(-10000, -10000);
 			
 			currentScene.AddChild(sprite);
 		}
@@ -52,7 +52,7 @@ namespace Game
 		
 		public void HitEntity()
 		{
-			sprite.Position = new Vector2(-10000, 10000);
+			sprite.Position = new Vector2(-10000, -10000);
 			fired = false;
 		}
 		

@@ -51,6 +51,7 @@
     <Compile Include="Collision.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="TestEnemy.cs" />
+    <Compile Include="EnemySpawner.cs" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="shaders\Simple.fcg" />
@@ -76,5 +77,6 @@
     <Content Include="textures\Player.png" />
     <Content Include="textures\Arena.png" />
     <Content Include="smallexplosion.wav" />
+    <Content Include="textures\Ehnehmii.png" />
   </ItemGroup>
 </Project>
