@@ -380,3 +380,13 @@ C:\Users\mizukami\Desktop\Game\Game\bin\Debug\Game-unsigned\Application\smallexp
 C:\Users\mizukami\Desktop\Game\Game\bin\Debug\Game-signed\Application\smallexplosion.wav
 C:\Users\mizukami\Desktop\Game\Game\bin\Debug\Game-unsigned\Application\textures\Ehnehmii.png
 C:\Users\mizukami\Desktop\Game\Game\bin\Debug\Game-signed\Application\textures\Ehnehmii.png
+E:\Game\Game\bin\Debug\Game-unsigned\Application\textures\SpriteLaser.png
+E:\Game\Game\bin\Debug\Game-unsigned\Application\textures\Player.png
+E:\Game\Game\bin\Debug\Game-unsigned\Application\textures\Arena.png
+E:\Game\Game\bin\Debug\Game-unsigned\Application\smallexplosion.wav
+E:\Game\Game\bin\Debug\Game-unsigned\Application\textures\Ehnehmii.png
+E:\Game\Game\bin\Debug\Game-signed\Application\textures\SpriteLaser.png
+E:\Game\Game\bin\Debug\Game-signed\Application\textures\Player.png
+E:\Game\Game\bin\Debug\Game-signed\Application\textures\Arena.png
+E:\Game\Game\bin\Debug\Game-signed\Application\smallexplosion.wav
+E:\Game\Game\bin\Debug\Game-signed\Application\textures\Ehnehmii.png
