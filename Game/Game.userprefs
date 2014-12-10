@@ -5,7 +5,7 @@
       <File FileName="Game\AppMain.cs" Line="46" Column="14" />
       <File FileName="Game\Player.cs" Line="59" Column="36" />
       <File FileName="Game\app.xml" Line="11" Column="1" />
-      <File FileName="Game\GameScene.cs" Line="198" Column="92" />
+      <File FileName="Game\GameScene.cs" Line="209" Column="33" />
       <File FileName="Game\Weapon.cs" Line="44" Column="34" />
       <File FileName="Game\PistolBullet.cs" Line="32" Column="40" />
       <File FileName="Game\PistolBulletSprite.cs" Line="10" Column="15" />
