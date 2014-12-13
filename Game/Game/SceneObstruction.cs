@@ -14,6 +14,8 @@ namespace Game
 		
 		private static EntityType	type = EntityType.scene;
 		
+		private float posX, posY;	
+		
 		public SceneObstruction (GameScene currentScene, TextureInfo texture, float posX, float posY, float sizeX, float sizeY)
 		{			
 			//Sprite
@@ -22,12 +24,14 @@ namespace Game
 			objectSprite.Quad.S 	= new Vector2(sizeX, sizeY);
 			objectSprite.Position	= new Vector2(posX, posY);
 			
+			this.posX = posX;
+			this.posY = posY;
+			
 			currentScene.AddChild(objectSprite);
 		}
 		
-		public override void Update(float dt)
+		public override void Update(float dt, int wave)
 		{
-			
 		}	
 		
 		public override void Move(float x, float y)
@@ -40,8 +44,9 @@ namespace Game
 			EntityType type = entity.GetEntityType();	
 		}
 		
-		public void PushEntity()
+		public void Reset()
 		{
+			objectSprite.Position	= new Vector2(posX, posY);
 		}
 		
 		public override SpriteUV GetSprite(){ return objectSprite; }

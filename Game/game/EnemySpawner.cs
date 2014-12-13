@@ -33,6 +33,8 @@ namespace Game
 		// This is so there's a limit each wave on how many enemies can be spawned
 		private static int numberOfAvailableEnemies = 0;
 		
+		private float posX, posY;
+		
 		public EnemySpawner(GameScene currentScene, Player player, SpriteUV[,] importedSpriteSheet, float posX, float posY, float conditionX, float conditionY)
 		{
 			// Enemies
@@ -48,6 +50,9 @@ namespace Game
 			this.conditionX = conditionX;
 			this.conditionY = conditionY;
 			
+			
+			this.posX = posX;
+			this.posY = posY;
 			// FOR DEBUGGING LOCATION OF SPAWNERS (ADD ADDITIONAL TextureInfo PARAMETER NEEDED)
 			//block 			= new SpriteUV(tex);	
 			//block.Scale    = new Vector2(50.0f, 50.0f);
@@ -130,6 +135,23 @@ namespace Game
 					else
 						canSpawn = false;
 			}
+		}
+		
+		public void Reset()
+		{
+			spawnPos 				 = new Vector2(posX, posY);
+			spawnSpeed 				 = 1;
+			spawnCounter 			 = 0;
+			spawnTimer 				 = 0;
+			canSpawn 				 = false;		
+			currentWave 			 = 0;
+			numberPerWave		     = 0;
+			numberOfAvailableEnemies = 0;
+			
+			for(int i = 0; i < NUMBER_OF_ENEMIES; i++)
+			{
+				enemy[i].Reset();
+			}	
 		}
 		
 		public Enemy GetEnemy(int i){ return enemy[i]; }

@@ -5,6 +5,7 @@ using Sce.PlayStation.Core;
 using Sce.PlayStation.Core.Environment;
 using Sce.PlayStation.Core.Graphics;
 using Sce.PlayStation.Core.Input;
+using Sce.PlayStation.Core.Audio;
 
 using Sce.PlayStation.HighLevel.GameEngine2D;
 using Sce.PlayStation.HighLevel.GameEngine2D.Base;
@@ -14,7 +15,20 @@ namespace Game
 	public class GameScene : Scene
 	{
 		// Private		
+		// Lose Screen		
+		public MenuScene menu;
+		private BgmPlayer musicPlayer = new Bgm("/Application/audio/fight.mp3").CreatePlayer();
+		
+		private SpriteUV loseBackground = new SpriteUV(new TextureInfo("/Application/textures/winLoseScreens/Lose/loseScreen.png"));
+		private SpriteUV restart = new SpriteUV(new TextureInfo("/Application/textures/winLoseScreens/Lose/restartY.png")); 
+		private SpriteUV quit = new SpriteUV(new TextureInfo("/Application/textures/winLoseScreens/Lose/saveQuitY.png")); 
+		private static TouchStatus  currentTouchStatus;
+		
 		// All entities within the GameScene
+		private static Sce.PlayStation.HighLevel.GameEngine2D.Label scoreLabel;
+		private static Sce.PlayStation.HighLevel.GameEngine2D.Label highScoreLabel;
+		private static Sce.PlayStation.HighLevel.GameEngine2D.Label waveLabel;
+		
 		private Player 				player;
 		private SceneObstruction[] 	sceneObject;
 		
@@ -23,18 +37,28 @@ namespace Game
 		// Two TextureInfo variables so that more than one variable can be passed into entities
 		private TextureInfo 		textureInfo1;
 		private TextureInfo 		textureInfo2;
+		
 		private SpriteUV 			background;
 		private Collision 			collChecker;	
 		
 		// Allow for continous firing
 		private bool 				attacking = false;		
 		
+		// Wave
+		private static int 			wave = 1;
+		
+		// Score
+		private static int			highScore = 0;
+		private static int 			currentScore = 0;
+		
 		// Public
-		public GameScene()
+		public GameScene(MenuScene menu)
 		{
-			this.Camera.SetViewFromViewport();			
-			
+			this.Camera.SetViewFromViewport();						
+				
 			collChecker = new Collision();
+			
+			this.menu = menu;
 			
 			// Setup all entities and sprites    (0.0f * (background.Scale.X - 1.0f)
 			
@@ -51,12 +75,21 @@ namespace Game
 			
 			
 			// Player
-			textureInfo1 		= new TextureInfo("/Application/textures/Player.png");
+			SpriteUV[,] playerSprites = new SpriteUV[2,2];
+			playerSprites[0,0] = new SpriteUV(new TextureInfo("/Application/textures/PlayerWalk1.png"));
+			playerSprites[0,1] = new SpriteUV(new TextureInfo("/Application/textures/PlayerWalk2.png"));
+			playerSprites[1,0] = new SpriteUV(new TextureInfo("/Application/textures/PlayerFire1.png"));
+			playerSprites[1,1] = new SpriteUV(new TextureInfo("/Application/textures/PlayerFire2.png"));
+			
 			textureInfo2 		= new TextureInfo("/Application/textures/Trans.png");
-			player 				= new Player(this, textureInfo1, textureInfo2);			
+			player 				= new Player(this, playerSprites, textureInfo2);			
 			
 			// Enemy Textures
-			textureInfo1 		= new TextureInfo("/Application/textures/Ehnehmii.png");
+			SpriteUV[,] enemySprites = new SpriteUV[2,2];
+			enemySprites[0,0] = new SpriteUV(new TextureInfo("/Application/textures/EnemyWalk1.png"));
+			enemySprites[0,1] = new SpriteUV(new TextureInfo("/Application/textures/EnemyWalk2.png"));
+			enemySprites[1,0] = new SpriteUV(new TextureInfo("/Application/textures/EnemyAttack1.png"));
+			enemySprites[1,1] = new SpriteUV(new TextureInfo("/Application/textures/EnemyAttack2.png"));
 			
 			// FOR DEBUGGING LOCATION OF SPAWNERS
 			//textureInfo2		= new TextureInfo("/Application/textures/Black.png");
@@ -64,30 +97,61 @@ namespace Game
 			// Enemy Spawners
 			enemySpawner = new EnemySpawner[4];	
 			// Left Side of Arena
-			enemySpawner[0] = new EnemySpawner(this, player, textureInfo1,
+			enemySpawner[0] = new EnemySpawner(this, player, enemySprites,
 			                                   (background.Position.X-((background.Quad.S.X*background.Scale.X)/2)) + 250.0f,
 			                                   ((background.Quad.S.Y/2) + background.Position.Y) - 50.0f,
 			                                   -200.0f, 0.0f); 
 			// Right Side of Arena
-			enemySpawner[1] = new EnemySpawner(this, player, textureInfo1,
+			enemySpawner[1] = new EnemySpawner(this, player, enemySprites,
 			                                   (background.Position.X+((background.Quad.S.X*background.Scale.X)/2)) + 125.0f,
 			                                   (background.Quad.S.Y/2) + background.Position.Y,
 			                                   1000.0f, 0.0f); 
 			// Top of Arena
-			enemySpawner[2] = new EnemySpawner(this, player, textureInfo1,
+			enemySpawner[2] = new EnemySpawner(this, player, enemySprites,
 			                                   background.Position.X + 200.0f, 
 			                                   ((background.Quad.S.Y*background.Scale.Y)/2.0f) + 200.0f,
 			                                   0.0f, 700.0f); 
 			// Bottom of Arena
-			enemySpawner[3] = new EnemySpawner(this, player, textureInfo1,
+			enemySpawner[3] = new EnemySpawner(this, player, enemySprites,
 			                                   background.Position.X + 200.0f, 
 			                                   ((-background.Quad.S.Y*background.Scale.Y)/2.0f) + 350.0f,
 			                                   0.0f, -250.0f); 
-								
+			
 			// All scene objects
 			textureInfo1	= new TextureInfo("/Application/textures/Trans.png");
 			SetUpSceneObjects(textureInfo1);
-
+			
+			// Initialise Lose Screen
+			InitialiseLoseScreen();
+			
+			// Labels
+			scoreLabel = new Sce.PlayStation.HighLevel.GameEngine2D.Label();
+			//scoreLabel.Color = new Vector4(0.0f, 0.0f, 0.0f, 1.0f);
+			scoreLabel.Position = new Vector2(670.0f, 450.0f);
+			scoreLabel.Scale = new Vector2(2.5f, 2.5f);
+			scoreLabel.Text = "Score: 0";
+			AddChild(scoreLabel);
+			
+			highScoreLabel = new Sce.PlayStation.HighLevel.GameEngine2D.Label();
+			//highScoreLabel.Color = new Vector4(0.0f, 0.0f, 0.0f, 1.0f);
+			highScoreLabel.Position = new Vector2(600.0f, 500.0f);
+			highScoreLabel.Scale = new Vector2(2.5f, 2.5f);
+			highScoreLabel.Text = "Highscore: " + highScore;
+			AddChild(highScoreLabel);
+			
+			waveLabel = new Sce.PlayStation.HighLevel.GameEngine2D.Label();
+			//waveLabel.Color = new Vector4(0.0f, 0.0f, 0.0f, 1.0f);
+			waveLabel.Position = new Vector2(50.0f, 500.0f);
+			waveLabel.Scale = new Vector2(2.5f, 2.5f);
+			waveLabel.Text = "Wave: " + wave;
+			AddChild(waveLabel);
+			
+			// Music
+			musicPlayer.Volume = 0.5f;
+			musicPlayer.LoopStart = 3.245d; 
+			musicPlayer.LoopEnd = 54.425d;
+			musicPlayer.Loop = true;
+			musicPlayer.Play();
 			
 			Scheduler.Instance.ScheduleUpdateForTarget(this, 1, false);
 		}
@@ -188,6 +252,7 @@ namespace Game
 			                                      (background.Position.Y + ((background.Quad.S.Y/2) + (-75 * background.Scale.Y)) - background.Scale.Y * 29),
 				                      			  background.Scale.X * 29, background.Scale.Y * 29);
 			
+			
 			// Scene Boundaries
 			sceneObject[16] = new SceneObstruction(this, textureInfo,	  
 				                      			  (background.Position.X + ((background.Quad.S.X/2) - (-236 * background.Scale.X))),
@@ -210,38 +275,80 @@ namespace Game
 				                      			  background.Scale.X * 700, background.Scale.Y * 100);			
 		}
 		
+		public void InitialiseLoseScreen()
+		{
+			// Background
+			loseBackground.Quad.S.X = Director.Instance.GL.Context.GetViewport().Width;
+			loseBackground.Quad.S.Y  = Director.Instance.GL.Context.GetViewport().Height;
+			loseBackground.Position = new Vector2(-10000, -10000);
+			//loseBackground.Position = new Vector2(0.0f,0.0f);
+			AddChild(loseBackground);
+			
+			restart.Quad.S.X = 166;
+			restart.Quad.S.Y = 81;
+			restart.Position = new Vector2(-10000, -10000);
+			//restart.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width/2 - 83,330.0f);
+			AddChild(restart);
+			
+			quit.Quad.S.X = 166;
+			quit.Quad.S.Y = 81;
+			quit.Position = new Vector2(-10000, -10000);
+			//quit.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width/2 - 83,130.0f);
+			AddChild(quit);
+			
+		}
+		
 		public override void Update(float dt)
-		{		
-			// Add all entities to a list
-			List<Entity> entities = new List<Entity>();	
+		{	
+			if(!player.IsAlive())
+			{		
+				musicPlayer.Stop();
+				LoseScreen();			
+			}				
+			else
+			{
+				SortLabels();			
 			
-			entities.Add(player);
-			
-			for(int i = 0; i < 4; i++)
-				for(int j = 0; j < enemySpawner[i].GetNoOfEnemies(); j++)			
-					entities.Add(enemySpawner[i].GetEnemy(j));
-			
-			for(int i = 0; i < 20; i++)			
-				entities.Add(sceneObject[i]);
-			
-			foreach(PistolBullet bullets in player.weapon.pistolBullet)
-				entities.Add(bullets);
+				// Add all entities to a list
+				List<Entity> entities = new List<Entity>();	
 				
-			
-			// Update all entities
-			for(int i = 0; i < 4; i++)
-				enemySpawner[i].Update(dt);
-			
-			foreach(Entity entries in entities)
-				entries.Update(dt);			
-			
-			CheckInput (entities);
-			
-			CheckArenaBoundaries(entities);
-			
-			CheckCollisions(entities);	
-			
-			CheckPlayerPosition(entities);
+				entities.Add(player);
+				
+				for(int i = 0; i < 4; i++)
+					for(int j = 0; j < enemySpawner[i].GetNoOfEnemies(); j++)			
+						entities.Add(enemySpawner[i].GetEnemy(j));
+				
+				for(int i = 0; i < 20; i++)			
+					entities.Add(sceneObject[i]);
+				
+				foreach(PistolBullet bullets in player.weapon.pistolBullet)
+					entities.Add(bullets);
+					
+				
+				// Update all entities
+				for(int i = 0; i < 4; i++)
+					enemySpawner[i].Update(dt, wave);
+				
+				foreach(Entity entries in entities)
+					entries.Update(dt, wave);			
+				
+				
+				// Run check methods
+				// Control
+				CheckInput (entities);
+				
+				// Ensure the player doesn't go outside the arena boundaries
+				CheckArenaBoundaries(entities);
+				
+				CheckCollisions(entities);	
+				
+				// Ensure the player is always centered in the middle of the screen
+				CheckPlayerPosition(entities);
+				
+				// Check to see if the wave is complete
+				if(enemySpawner[0].GetEnemy(0).AreAllEnemiesDead())
+					wave++;
+			}
 		}
 		
 		public void CheckInput(List<Entity> entities)
@@ -257,6 +364,12 @@ namespace Game
 					if(!entries.Equals(player))
 						entries.Move(gamePadData.AnalogLeftX * -5.0f, gamePadData.AnalogLeftY * 5.0f);
 				
+				// For animating the player
+				if(gamePadData.AnalogLeftX != 0 || gamePadData.AnalogLeftY != 0)
+					player.SetMoving(true);
+				else
+					player.SetMoving(false);
+				
 				background.Position = new Vector2(background.Position.X - (gamePadData.AnalogLeftX * 5.0f),
 				                                  background.Position.Y - (-gamePadData.AnalogLeftY * 5.0f));
 				for(int i = 0; i < 4; i++)
@@ -267,10 +380,16 @@ namespace Game
 				
 				// Firing your weapon
 				if(gamePadData.AnalogRightX != 0 || gamePadData.AnalogRightY != 0)
+				{
 					attacking = true;
+					player.SetAttacking(true);
+				}					
 				else
+				{
 					attacking = false;
-				
+					player.SetAttacking(false);
+				}				
+
 				if(attacking)
 					player.Attack();
 			}
@@ -322,7 +441,8 @@ namespace Game
 		
 		public void CheckCollisions(List<Entity> entities)
 		{		
-			foreach(Entity currentEntries in entities)
+			// Check all entites against themselves for collisions			
+			foreach(Entity currentEntries in entities)	
 				foreach(Entity otherEntries in entities)
 					if(collChecker.calcCollision(currentEntries.GetSprite(), otherEntries.GetSprite()))
 					{
@@ -333,9 +453,12 @@ namespace Game
 		
 		public void CheckPlayerPosition(List<Entity> entities)
 		{
+			// Acquire player position
 			float x = player.GetSprite().Position.X;
 			float y = player.GetSprite().Position.Y;
 			
+			
+			// If the player's position is not within -0.5 and 0.5 on both axis, then move player and all entities relative to the scene
 			if(x != Director.Instance.GL.Context.GetViewport().Width*0.5f)
 			{
 				if(x > (Director.Instance.GL.Context.GetViewport().Width*0.5f) + 5.0f)
@@ -391,6 +514,99 @@ namespace Game
 			}
 
 		}
+		
+		public void SortLabels()
+		{
+			currentScore = player.GetScore();
+			
+			if(currentScore > highScore)
+				highScore = currentScore;
+			
+			scoreLabel.Text = "Score: " + currentScore;
+			highScoreLabel.Text ="Highscore: " + highScore;
+			waveLabel.Text = "Wave: " + wave;
+		}
+		
+		public void LoseScreen()
+		{
+			// Background
+			scoreLabel.Position = new Vector2(-6000.0f, -5000.0f);
+			highScoreLabel.Position = new Vector2(300.0f, 500.0f);
+			waveLabel.Position = new Vector2(-6000.0f, -5000.0f);
+			loseBackground.Position = new Vector2(0.0f,0.0f);		
+			restart.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width/2 - 83, 330.0f);		
+			
+			quit.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width/2 - 83, 130.0f);
+			
+			// Query gamepad for current state
+			var gamePadData = GamePad.GetData(0);
+			
+			List<TouchData> touches = Touch.GetData(0);
+			
+			foreach (TouchData data in touches)
+			{
+				currentTouchStatus = data.Status;
+				float xPos = ((data.X + 0.5f) * Director.Instance.GL.Context.GetViewport().Width);
+				float yPos = -((data.Y + 0.5f) * Director.Instance.GL.Context.GetViewport().Height)
+								+ Director.Instance.GL.Context.GetViewport().Height;
+				
+				if(data.Status == TouchStatus.Down)
+				{					
+					if( xPos > restart.Position.X &&
+					   xPos < restart.Position.X + restart.Quad.S.X &&
+					   yPos > restart.Position.Y &&
+					   yPos < restart.Position.Y + restart.Quad.S.Y)
+					{
+						musicPlayer.Play();
+						Reset();
+					}
+				}
+				
+				if(data.Status == TouchStatus.Down)
+				{
+					if( xPos > quit.Position.X &&
+						xPos < quit.Position.X + quit.Quad.S.X &&
+					    yPos > quit.Position.Y &&
+					    yPos < quit.Position.Y + quit.Quad.S.Y)
+					{
+						menu.quitGame = true;
+					}
+				}
+			}		
+
+		}
+		
+		public void Reset()
+		{
+			// All of GameScene's changable variables are reset to their original values
+			attacking = false;		
+			wave = 1;		
+			currentScore = 0;
+
+			// Reset all entities and sprites
+			loseBackground.Position = new Vector2(-10000, -10000);
+			restart.Position = new Vector2(-10000, -10000);
+			quit.Position = new Vector2(-10000, -10000);	
+			
+			scoreLabel.Position = new Vector2(670.0f, 450.0f);
+			highScoreLabel.Position = new Vector2(600.0f, 500.0f);
+			waveLabel.Position = new Vector2(50.0f, 500.0f);
+			
+			background.Position = new Vector2((Director.Instance.GL.Context.GetViewport().Width*0.5f) + background.Quad.S.X*1.75f,
+			                                  (Director.Instance.GL.Context.GetViewport().Height*0.5f) - ((background.Quad.S.Y/2) - 55.0f));
+
+			player.Reset();			
+
+			for(int i = 0; i < 4; i++)			
+				enemySpawner[i].Reset();
+								
+			for(int i = 0; i < 20; i++)
+				sceneObject[i].Reset();            			          
+		}
+		
+		public int GetHighScore(){ return highScore; }
+		
+		public int GetScore(){ return currentScore; }
 	}
 }
 

@@ -46,12 +46,13 @@
     <Compile Include="PistolBulletSprite.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="SoundManager.cs" />
-    <Compile Include="Observer.cs" />
     <Compile Include="SceneObstruction.cs" />
     <Compile Include="Collision.cs" />
     <Compile Include="Entity.cs" />
-    <Compile Include="TestEnemy.cs" />
     <Compile Include="EnemySpawner.cs" />
+    <Compile Include="MenuScene.cs" />
+    <Compile Include="WinScreen.cs" />
+    <Compile Include="LoseScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="shaders\Simple.fcg" />
@@ -63,20 +64,44 @@
   <Import Project="$(MSBuildExtensionsPath)\Sce\Sce.Psm.CSharp.targets" />
   <ItemGroup>
     <Folder Include="textures\" />
+    <Folder Include="audio\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="textures\Bullet.png" />
-    <Content Include="textures\Plaiyah.png" />
-    <Content Include="textures\Greyscreen.png" />
-    <Content Include="textures\Cross.png" />
-    <Content Include="textures\Char.png" />
-    <Content Include="textures\Arena2.jpg" />
     <Content Include="textures\Black.png" />
     <Content Include="textures\Trans.png" />
     <Content Include="textures\SpriteLaser.png" />
     <Content Include="textures\Player.png" />
     <Content Include="textures\Arena.png" />
-    <Content Include="smallexplosion.wav" />
-    <Content Include="textures\Ehnehmii.png" />
+    <Content Include="textures\menuTextures\mainMenu.png" />
+    <Content Include="textures\menuTextures\optionsO.png" />
+    <Content Include="textures\menuTextures\optionsY.png" />
+    <Content Include="textures\menuTextures\playO.png" />
+    <Content Include="textures\menuTextures\playY.png" />
+    <Content Include="textures\menuTextures\quitO.png" />
+    <Content Include="textures\menuTextures\quitY.png" />
+    <Content Include="textures\winLoseScreens\Lose\loseScreen.png" />
+    <Content Include="textures\winLoseScreens\Lose\restartB.png" />
+    <Content Include="textures\winLoseScreens\Lose\restartY.png" />
+    <Content Include="textures\winLoseScreens\Lose\saveQuitB.png" />
+    <Content Include="textures\winLoseScreens\Lose\saveQuitY.png" />
+    <Content Include="textures\winLoseScreens\Win\continueO.png" />
+    <Content Include="textures\winLoseScreens\Win\continueY.png" />
+    <Content Include="textures\winLoseScreens\Win\saveQuitO.png" />
+    <Content Include="textures\winLoseScreens\Win\saveQuitY.png" />
+    <Content Include="textures\winLoseScreens\Win\winScreen.png" />
+    <Content Include="textures\EnemyAttack1.png" />
+    <Content Include="textures\EnemyAttack2.png" />
+    <Content Include="textures\EnemyWalk1.png" />
+    <Content Include="textures\EnemyWalk2.png" />
+    <Content Include="textures\PlayerFire1.png" />
+    <Content Include="textures\PlayerFire2.png" />
+    <Content Include="textures\PlayerWalk1.png" />
+    <Content Include="textures\PlayerWalk2.png" />
+    <Content Include="audio\aaahhh.wav" />
+    <Content Include="audio\fire.wav" />
+    <Content Include="audio\hit.wav" />
+    <Content Include="textures\menuTextures\Title.png" />
+    <Content Include="audio\menu.mp3" />
+    <Content Include="audio\fight.mp3" />
   </ItemGroup>
 </Project>

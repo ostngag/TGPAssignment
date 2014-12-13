@@ -29,6 +29,9 @@ namespace Game
 		
 		private static bool alive = true;
 		
+		// Score
+		private static int 			currentScore = 0;
+		
 		// Public
 		public Weapon weapon;
 
@@ -169,7 +172,21 @@ namespace Game
 			 	Move(10.0f * FMath.Sin(angle), 10.0f * -FMath.Cos(angle));	
 			}		
 		}
-				
+		
+		public void Reset()
+		{
+			spriteTick = 0;
+			spriteIndex1 = 0;
+			spriteIndex2 = 0;
+			attacking = false;
+			moving = false;
+			alive = true;
+			currentScore = 0;
+			charSprite.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width*0.5f,Director.Instance.GL.Context.GetViewport().Height*0.5f);
+			
+			weapon.Reset();
+		}
+		
 		public override SpriteUV GetSprite (){ return collisionBox; }
 		
 		public override EntityType GetEntityType(){ return type; }
@@ -179,6 +196,10 @@ namespace Game
 		public void SetAttacking(bool attacking){ this.attacking = attacking; }
 		
 		public void SetMoving(bool moving){ this.moving = moving; }
+		
+		public void AddToScore(int score){ currentScore += score; }
+		
+		public int GetScore(){ return currentScore; }
 	}
 }
 

@@ -5,6 +5,7 @@ using Sce.PlayStation.Core.Graphics;
 
 using Sce.PlayStation.HighLevel.GameEngine2D;
 using Sce.PlayStation.HighLevel.GameEngine2D.Base;
+using Sce.PlayStation.Core.Audio;
 
 namespace Game
 {	
@@ -13,10 +14,16 @@ namespace Game
 		private bool fired = false;
 		public SpriteUV sprite;
 		private float bulletVelocityX, bulletVelocityY;
-		public static int bulletInterval = 21;
-		private static int speed = 10;
+		
+		// A count which when is larger than firingSpeed, will allow a bullet to fire
+		public static int bulletInterval = 6;
+		// This is the time interval between each shot of the weapon
+		private static int firingSpeed = 5;
 		
 		private static EntityType 	type = EntityType.bullet;
+		
+		private static Sound file = new Sound("/Application/audio/fire.wav");
+		private static SoundPlayer sound = file.CreatePlayer();	
 		
 		public PistolBullet (PistolBulletSprite textureInfo, GameScene currentScene)
 		{	
@@ -29,11 +36,10 @@ namespace Game
 			currentScene.AddChild(sprite);
 		}
 		
-		public override void Update(float dt)
+		public override void Update(float dt, int wave)
 		{
 			if(fired)
-				sprite.Position = new Vector2(sprite.Position.X + bulletVelocityX, sprite.Position.Y + bulletVelocityY);
-			
+				sprite.Position = new Vector2(sprite.Position.X + bulletVelocityX, sprite.Position.Y + bulletVelocityY);			
 		}
 		
 		public override void Move(float x, float y)
@@ -47,7 +53,8 @@ namespace Game
 			sprite.Angle = angle;
 			bulletVelocityX = velocityX;
 			bulletVelocityY = velocityY;
-			fired = true; 
+			fired = true;
+			PlaySound(sound, 0.1f);
 		}
 		
 		public void HitEntity()
@@ -64,7 +71,15 @@ namespace Game
 				HitEntity();
 		}
 		
-		public static int GetSpeed() { return speed; }
+		public void	Reset()
+		{
+			fired = false;
+			bulletInterval = 6;
+			firingSpeed = 5;
+			sprite.Position = new Vector2(-10000, -10000);
+		}
+		
+		public static int GetSpeed() { return firingSpeed; }
 		
 		public override SpriteUV GetSprite(){ return sprite; }
 		

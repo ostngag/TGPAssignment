@@ -6,6 +6,8 @@ using Sce.PlayStation.Core.Graphics;
 using Sce.PlayStation.HighLevel.GameEngine2D;
 using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 using Sce.PlayStation.Core.Input;
+using Sce.PlayStation.Core.Audio;
+
 namespace Game
 {
 	public abstract class Entity
@@ -22,7 +24,7 @@ namespace Game
 		{			
 		}		
 		
-		public virtual void Update(float dt)
+		public virtual void Update(float dt, int wave)
 		{
 		}
 		
@@ -32,6 +34,16 @@ namespace Game
 		
 		public virtual void Rotate(float x, float y)
 		{				
+		}
+		
+		public virtual void Animate()
+		{
+		}
+		
+		public virtual void PlaySound(SoundPlayer sound, float volume)
+		{
+			sound.Play();
+			sound.Volume = volume;
 		}
 		
 		public virtual bool Collision(SpriteUV sprite1, SpriteUV sprite2) // Collision detection

@@ -16,14 +16,17 @@ namespace Game
 		// Private Variables
 		
 		// Game Entities
-		private static GameScene currentScene;
+		//private static GameScene currentScene;
+		private static MenuScene menu;
+		private static bool quitGame = false;
+		
 		
 		public static void Main (string[] args)
 		{
 			Initialize ();
 			
 			// Game loop
-			while (true) 
+			while (!quitGame) 
 			{
 				// Check for player input
 				SystemEvents.CheckEvents ();
@@ -35,7 +38,10 @@ namespace Game
 				
 				Director.Instance.GL.Context.SwapBuffers();
 				Director.Instance.PostSwap();
-			}
+				
+			 	if(menu.HasQuit())
+					quitGame = true;
+			}		
 		}
 
 		public static void Initialize ()
@@ -43,8 +49,9 @@ namespace Game
 			// Set up director + UISystem.
 			Director.Initialize ();			
 			// Run the scene.
-			currentScene = new GameScene();
-			Director.Instance.RunWithScene(currentScene, true);			
+			//currentScene = new GameScene();
+			menu = new MenuScene();
+			Director.Instance.RunWithScene(menu, true);		
 		}
 
 		public static void Update ()

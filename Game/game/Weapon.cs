@@ -68,6 +68,16 @@ namespace Game
 				bulletCount++;
 			}				
 		}
+		
+		public void Reset()
+		{
+			bulletCount = 0;
+			
+			for(int i = 0; i < 100; i++)
+			{
+				pistolBullet[i].Reset();
+			}
+		}
 	}
 }
 

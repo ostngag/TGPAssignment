@@ -100,9 +100,7 @@ C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsig
 C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\System.Core.dll
 C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\System.ServiceModel.Web.dll
 C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\System.ServiceModel.dll
-C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\Sce.PlayStation.HighLevel.UI.dll
 C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\app.exe.mdb
-C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\Plaiyah.png
 C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\app.info
 C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\shaders\Simple.cgx
 C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\app.exe
@@ -113,11 +111,8 @@ C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signe
 C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\System.Core.dll
 C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\System.ServiceModel.Web.dll
 C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\System.ServiceModel.dll
-C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\Sce.PlayStation.HighLevel.UI.dll
 C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\app.exe.mdb
-C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\Plaiyah.png
 C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game.psdp
-C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\obj\Debug\Game.csprojResolveAssemblyReference.cache
 C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\obj\Debug\shaders\shaders\Simple.cgx
 C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\obj\Debug\convertedpdb\app.exe.mdb
 C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\obj\Debug\app.exe
@@ -154,8 +149,6 @@ H:\Git Repos\TGPAssignment\Game\Game\obj\Debug\shaders\shaders\Simple.cgx
 H:\Git Repos\TGPAssignment\Game\Game\obj\Debug\convertedpdb\app.exe.mdb
 H:\Git Repos\TGPAssignment\Game\Game\obj\Debug\app.exe
 H:\Git Repos\TGPAssignment\Game\Game\obj\Debug\app.pdb
-C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\Bullet.png
-C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\Bullet.png
 C:\Users\mizukami\Desktop\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\app.info
 C:\Users\mizukami\Desktop\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\shaders\Simple.cgx
 C:\Users\mizukami\Desktop\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\app.exe
@@ -1052,3 +1045,75 @@ C:\Users\mizukami\Desktop\GameH - Copy\Game\obj\Debug\shaders\shaders\Simple.cgx
 C:\Users\mizukami\Desktop\GameH - Copy\Game\obj\Debug\convertedpdb\app.exe.mdb
 C:\Users\mizukami\Desktop\GameH - Copy\Game\obj\Debug\app.exe
 C:\Users\mizukami\Desktop\GameH - Copy\Game\obj\Debug\app.pdb
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\Black.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\Trans.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\SpriteLaser.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\Player.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\Arena.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\menuTextures\mainMenu.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\menuTextures\optionsO.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\menuTextures\optionsY.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\menuTextures\playO.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\menuTextures\playY.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\menuTextures\quitO.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\menuTextures\quitY.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\winLoseScreens\Lose\loseScreen.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\winLoseScreens\Lose\restartB.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\winLoseScreens\Lose\restartY.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\winLoseScreens\Lose\saveQuitB.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\winLoseScreens\Lose\saveQuitY.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\winLoseScreens\Win\continueO.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\winLoseScreens\Win\continueY.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\winLoseScreens\Win\saveQuitO.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\winLoseScreens\Win\saveQuitY.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\winLoseScreens\Win\winScreen.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\EnemyAttack1.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\EnemyAttack2.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\EnemyWalk1.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\EnemyWalk2.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\PlayerFire1.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\PlayerFire2.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\PlayerWalk1.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\PlayerWalk2.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\audio\aaahhh.wav
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\audio\fire.wav
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\audio\hit.wav
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\textures\menuTextures\Title.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\audio\menu.mp3
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-unsigned\Application\audio\fight.mp3
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\Black.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\Trans.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\SpriteLaser.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\Player.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\Arena.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\menuTextures\mainMenu.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\menuTextures\optionsO.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\menuTextures\optionsY.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\menuTextures\playO.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\menuTextures\playY.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\menuTextures\quitO.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\menuTextures\quitY.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\winLoseScreens\Lose\loseScreen.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\winLoseScreens\Lose\restartB.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\winLoseScreens\Lose\restartY.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\winLoseScreens\Lose\saveQuitB.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\winLoseScreens\Lose\saveQuitY.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\winLoseScreens\Win\continueO.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\winLoseScreens\Win\continueY.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\winLoseScreens\Win\saveQuitO.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\winLoseScreens\Win\saveQuitY.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\winLoseScreens\Win\winScreen.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\EnemyAttack1.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\EnemyAttack2.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\EnemyWalk1.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\EnemyWalk2.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\PlayerFire1.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\PlayerFire2.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\PlayerWalk1.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\PlayerWalk2.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\audio\aaahhh.wav
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\audio\fire.wav
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\audio\hit.wav
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\textures\menuTextures\Title.png
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\audio\menu.mp3
+C:\Users\mizukami\Desktop\TechGames\TGPAssignment\Game\Game\bin\Debug\Game-signed\Application\audio\fight.mp3
