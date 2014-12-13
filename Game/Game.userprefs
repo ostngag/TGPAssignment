@@ -2,19 +2,18 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Game\GameScene.cs">
     <Files>
-      <File FileName="Game\AppMain.cs" Line="46" Column="14" />
-      <File FileName="Game\Player.cs" Line="59" Column="36" />
-      <File FileName="Game\app.xml" Line="11" Column="1" />
-      <File FileName="Game\GameScene.cs" Line="209" Column="33" />
-      <File FileName="Game\Weapon.cs" Line="44" Column="34" />
-      <File FileName="Game\PistolBullet.cs" Line="32" Column="40" />
-      <File FileName="Game\PistolBulletSprite.cs" Line="10" Column="15" />
-      <File FileName="Game\Entity.cs" Line="18" Column="57" />
-      <File FileName="Game\Collision.cs" Line="11" Column="44" />
-      <File FileName="Game\SceneObstruction.cs" Line="22" Column="25" />
-      <File FileName="Game\Enemy.cs" Line="124" Column="5" />
-      <File FileName="Game\SoundManager.cs" Line="21" Column="4" />
-      <File FileName="Game\EnemySpawner.cs" Line="114" Column="14" />
+      <File FileName="Game\AppMain.cs" Line="32" Column="33" />
+      <File FileName="Game\GameScene.cs" Line="588" Column="58" />
+      <File FileName="Game\MenuScene.cs" Line="121" Column="6" />
+      <File FileName="Game\LoseScreen.cs" Line="19" Column="1" />
+      <File FileName="Game\WinScreen.cs" Line="96" Column="1" />
+      <File FileName="Game\SoundManager.cs" Line="4" Column="1" />
+      <File FileName="Game\Enemy.cs" Line="31" Column="40" />
+      <File FileName="Game\Player.cs" Line="149" Column="4" />
+      <File FileName="Game\Entity.cs" Line="41" Column="4" />
+      <File FileName="Game\PistolBullet.cs" Line="72" Column="4" />
+      <File FileName="Game\SceneObstruction.cs" Line="20" Column="7" />
+      <File FileName="Game\EnemySpawner.cs" Line="132" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

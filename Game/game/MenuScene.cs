@@ -5,6 +5,7 @@ using Sce.PlayStation.Core;
 using Sce.PlayStation.Core.Graphics;
 using Sce.PlayStation.Core.Input;
 using Sce.PlayStation.Core.Environment;
+using Sce.PlayStation.Core.Audio;
 
 using Sce.PlayStation.HighLevel.GameEngine2D;
 using Sce.PlayStation.HighLevel.GameEngine2D.Base;
@@ -12,14 +13,17 @@ using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 namespace Game
 {
 	public class MenuScene : Scene
-	{
+	{	
+		private SpriteUV title = new SpriteUV(new TextureInfo("/Application/textures/menuTextures/Title.png"));
 		private SpriteUV background = new SpriteUV(new TextureInfo("/Application/textures/menuTextures/mainMenu.png"));
 		private SpriteUV play = new SpriteUV(new TextureInfo("/Application/textures/menuTextures/playY.png")); 
 		private SpriteUV options = new SpriteUV(new TextureInfo("/Application/textures/menuTextures/optionsY.png")); 
-		private SpriteUV quit = new SpriteUV(new TextureInfo("/Application/textures/menuTextures/quitY.png")); 
+		private SpriteUV quit = new SpriteUV(new TextureInfo("/Application/textures/menuTextures/quitY.png")); 		
 		private static TouchStatus  currentTouchStatus;
-		public bool quitGame = false;
 		private static GameScene startGame;
+		private BgmPlayer musicPlayer = new Bgm("/Application/audio/menu.mp3").CreatePlayer();
+		
+		public bool quitGame = false;
 		
 		public MenuScene()
 		{
@@ -30,6 +34,12 @@ namespace Game
 			background.Quad.S.Y  = Director.Instance.GL.Context.GetViewport().Height;
 			background.Position = new Vector2(0.0f,0.0f);
 			AddChild(background);
+			
+			// Title
+			title.Quad.S.X = 500;
+			title.Quad.S.Y = 81;
+			title.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width/2 - 250.0f,430.0f);
+			AddChild(title);
 			
 			//Play
 			play.Quad.S.X = 166;
@@ -49,11 +59,20 @@ namespace Game
 			quit.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width/2 - 83,130.0f);
 			AddChild(quit);
 			
+			// Music
+			musicPlayer.LoopStart = 0.545d;
+			musicPlayer.LoopEnd= 125.40d;
+			musicPlayer.Loop = true;
+			musicPlayer.Play();
+			
 			Scheduler.Instance.ScheduleUpdateForTarget(this, 1, false);
 		}
 		
 		public override void Update (float dt)
         {
+			//highScore = startGame.GetHighScore();
+			//currentScore = startGame.GetScore();
+			
 			var gamePadData = GamePad.GetData(0);
 			List<TouchData> touches = Touch.GetData(0);
 			
@@ -70,7 +89,7 @@ namespace Game
 					   yPos > play.Position.Y &&
 					   yPos < play.Position.Y + play.Quad.S.Y)
 					{
-						this.OnExit();
+						quitGame = true;
 					}
 				}
 				
@@ -93,8 +112,10 @@ namespace Game
 					    yPos > quit.Position.Y &&
 					    yPos < quit.Position.Y + quit.Quad.S.Y)     
 					{
+						musicPlayer.Stop();
+						musicPlayer.Dispose();
+						startGame = new GameScene(this);
 						play = new SpriteUV(new TextureInfo("/Application/textures/menuTextures/playO.png")); 
-						startGame = new GameScene();
 						Director.Instance.ReplaceScene(startGame);
 					}
 				}
@@ -106,13 +127,6 @@ namespace Game
 //            _songPlayer.Loop = true;
 //            _songPlayer.Play();
         }
-        public override void OnExit ()
-        {
-//            base.OnExit ();
-//            _songPlayer.Stop();
-//            _songPlayer.Dispose();
-//            _songPlayer = null;
-        }
         
         public override void Draw ()
         {
@@ -123,8 +137,9 @@ namespace Game
         {
             
         }
+		
+		public bool HasQuit(){ return quitGame; }		
 	}
-
 }
 
 

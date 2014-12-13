@@ -12,15 +12,20 @@ using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 namespace Game
 {
 	public class LoseScreen : Scene
-	{
+	{		
+		private GameScene game;
+		private MenuScene menu;
+		
 		private SpriteUV background = new SpriteUV(new TextureInfo("/Application/textures/winLoseScreens/Lose/loseScreen.png"));
 		private SpriteUV restart = new SpriteUV(new TextureInfo("/Application/textures/winLoseScreens/Lose/restartY.png")); 
 		private SpriteUV quit = new SpriteUV(new TextureInfo("/Application/textures/winLoseScreens/Lose/saveQuitY.png")); 
 		private static TouchStatus  currentTouchStatus;
 		
-		public LoseScreen()
+		public LoseScreen(GameScene game, MenuScene menu)
 		{
 			this.Camera.SetViewFromViewport();
+			
+			this.game = game;
 			
 			// Background
 			background.Quad.S.X = Director.Instance.GL.Context.GetViewport().Width;
@@ -70,7 +75,9 @@ namespace Game
 					    yPos > quit.Position.Y &&
 					    yPos < quit.Position.Y + quit.Quad.S.Y)
 					{
-						//code for reloading GameScene
+						game.Reset();
+						Director.Instance.ReplaceScene(menu);
+						OnExit();
 					}
 				}
 			}
@@ -84,10 +91,8 @@ namespace Game
         ~LoseScreen()
         {
             
-        }
-		
+        }	
 	}
-
 }
 
 
