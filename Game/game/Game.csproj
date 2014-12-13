@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C2A4599A-3C4E-441B-BCB7-78A06A802C1C}</ProjectGuid>
+    <ProjectTypeGuids>{69878862-DA7D-4DC6-B0A1-50D8FAB4242F};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Game</RootNamespace>
+    <AssemblyName>Game</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Sce.PlayStation.Core" />
+    <Reference Include="Sce.PlayStation.HighLevel.GameEngine2D" />
+    <Reference Include="Sce.PlayStation.HighLevel.UI" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppMain.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="Weapon.cs" />
+    <Compile Include="GameScene.cs" />
+    <Compile Include="PistolBullet.cs" />
+    <Compile Include="PistolBulletSprite.cs" />
+    <Compile Include="Enemy.cs" />
+    <Compile Include="SoundManager.cs" />
+    <Compile Include="SceneObstruction.cs" />
+    <Compile Include="Collision.cs" />
+    <Compile Include="Entity.cs" />
+    <Compile Include="EnemySpawner.cs" />
+    <Compile Include="MenuScene.cs" />
+    <Compile Include="WinScreen.cs" />
+    <Compile Include="LoseScreen.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ShaderProgram Include="shaders\Simple.fcg" />
+    <ShaderProgram Include="shaders\Simple.vcg" />
+  </ItemGroup>
+  <ItemGroup>
+    <PsmMetadata Include="app.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Sce\Sce.Psm.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="textures\" />
+    <Folder Include="audio\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="textures\Black.png" />
+    <Content Include="textures\Trans.png" />
+    <Content Include="textures\SpriteLaser.png" />
+    <Content Include="textures\Player.png" />
+    <Content Include="textures\Arena.png" />
+    <Content Include="textures\menuTextures\mainMenu.png" />
+    <Content Include="textures\menuTextures\optionsO.png" />
+    <Content Include="textures\menuTextures\optionsY.png" />
+    <Content Include="textures\menuTextures\playO.png" />
+    <Content Include="textures\menuTextures\playY.png" />
+    <Content Include="textures\menuTextures\quitO.png" />
+    <Content Include="textures\menuTextures\quitY.png" />
+    <Content Include="textures\winLoseScreens\Lose\loseScreen.png" />
+    <Content Include="textures\winLoseScreens\Lose\restartB.png" />
+    <Content Include="textures\winLoseScreens\Lose\restartY.png" />
+    <Content Include="textures\winLoseScreens\Lose\saveQuitB.png" />
+    <Content Include="textures\winLoseScreens\Lose\saveQuitY.png" />
+    <Content Include="textures\winLoseScreens\Win\continueO.png" />
+    <Content Include="textures\winLoseScreens\Win\continueY.png" />
+    <Content Include="textures\winLoseScreens\Win\saveQuitO.png" />
+    <Content Include="textures\winLoseScreens\Win\saveQuitY.png" />
+    <Content Include="textures\winLoseScreens\Win\winScreen.png" />
+    <Content Include="textures\EnemyAttack1.png" />
+    <Content Include="textures\EnemyAttack2.png" />
+    <Content Include="textures\EnemyWalk1.png" />
+    <Content Include="textures\EnemyWalk2.png" />
+    <Content Include="textures\PlayerFire1.png" />
+    <Content Include="textures\PlayerFire2.png" />
+    <Content Include="textures\PlayerWalk1.png" />
+    <Content Include="textures\PlayerWalk2.png" />
+    <Content Include="audio\81392__xythe__fight-for-your-life-loop.mp3" />
+    <Content Include="audio\aaahhh.wav" />
+    <Content Include="audio\fire.wav" />
+    <Content Include="audio\hit.wav" />
+    <Content Include="audio\172561__djgriffin__video-game-7.mp3" />
+  </ItemGroup>
+</Project>
